@@ -1,0 +1,445 @@
+{
+  "system-design-big-picture-request-flow.svg": {
+    "title": "The big picture: what happens when you tap a button",
+    "caption": "Follow the numbers. A tap travels to the front door, then to the app, then to the data. Slow jobs wait in a line, and everything keeps notes so people can fix problems.",
+    "steps": [
+      ["You tap a button", "Your phone or laptop sends a request, like handing a note to a waiter."],
+      ["The front door", "A gatekeeper checks the request is safe and sends it the right way."],
+      ["The app (API)", "The app thinks about what you asked and decides what to do."],
+      ["The data", "Notes, photos, and facts you want are kept safe here."],
+      ["A waiting line", "Slow jobs, like making a big report, wait here instead of making you wait."],
+      ["Helpers (workers)", "Helpers pick jobs from the line one by one and finish them."],
+      ["Notes about everything", "Logs, counts, and traces record what happened so problems can be found."],
+      ["The answer returns", "You see the result on your screen, ideally in less than a second."]
+    ]
+  },
+  "system-design-requirements-to-architecture.svg": {
+    "title": "From what people need to what we build",
+    "caption": "Good design starts with people, not machines. First ask what they need, then count how much, then pick the simplest parts that can do the job.",
+    "steps": [
+      ["What do people want?", "Write the jobs in plain words: 'save a note', 'find a note'."],
+      ["How good must it be?", "Fast? Always on? Safe? These are quality goals."],
+      ["How much is there?", "Guess users, requests, and data size. Write numbers down."],
+      ["Find the squeeze", "Which part will run out first: speed, space, or money?"],
+      ["Pick simple parts", "Choose the smallest set of boxes that fits the numbers."],
+      ["Explain the trade", "Say what you gain and what you give up with each choice."]
+    ]
+  },
+  "system-design-browser-to-api-request.svg": {
+    "title": "A web request, step by step",
+    "caption": "Before any real work starts, your browser finds the address, makes a safe connection, and gets directed to a healthy server. Only then does the app look at your data.",
+    "steps": [
+      ["Type a web address", "You type 'notes.example.com'. Computers need a number, not a name."],
+      ["DNS: the phone book", "DNS looks up the name and finds the number address."],
+      ["A safe connection", "TLS locks the road so nobody can read the message on the way."],
+      ["The gateway", "The front door checks the request and chooses where it goes."],
+      ["Load balancer", "Picks the least busy copy of the app so nobody waits in a long line."],
+      ["The app answers", "The app checks the rules and builds the answer."],
+      ["Cache or database", "It first checks the fast shelf (cache) and then the big storeroom (database)."],
+      ["The reply travels back", "The answer goes back the same road to your screen.", "ok"]
+    ]
+  },
+  "system-design-api-layered-architecture.svg": {
+    "title": "Layers: a school with different jobs in different rooms",
+    "caption": "Each layer has one job and only talks to the layer next to it. That way you can change the storage without touching the screens, and the other way around.",
+    "steps": [
+      ["The screen (presentation)", "What people see and tap. It does not know how data is stored."],
+      ["The front desk (API)", "Takes requests, checks the shape, and sends back answers."],
+      ["The rule book (application)", "Decides the steps: 'first check, then save, then tell'."],
+      ["The facts (domain)", "The real rules of the business, like 'a title can't be empty'."],
+      ["The storage helper", "Knows how to read and write the data, and nothing else."],
+      ["The tools (infrastructure)", "Database, files, and email: the outside things we plug in."]
+    ]
+  },
+  "system-design-database-choice-map.svg": {
+    "title": "Which kind of storage should I pick?",
+    "caption": "Ask what the data looks like and how you will look for it. If you are unsure, start with a normal relational database. It handles most things well.",
+    "steps": [
+      ["Look at your data", "Is it tidy rows, a bag of notes, small facts, files, or text to search?"],
+      ["Tidy rows that connect", "Use a relational database (like PostgreSQL). Great for most apps."],
+      ["One fast lookup", "Use a key-value store: give a key, get a value, very quickly."],
+      ["Flexible documents", "Use a document database when each item has a different shape."],
+      ["Searching words", "Use a search engine when people type words to find things."],
+      ["Big files", "Photos and videos go into object storage, with a pointer in the database."],
+      ["Check the rules", "Do you need 'all or nothing' saves? That points to relational."],
+      ["Start simple", "Add another storage only when a real need appears.", "ok"]
+    ]
+  },
+  "system-design-cache-aside-flow.svg": {
+    "title": "A cache is a sticky note on your desk",
+    "caption": "Look at the sticky note first (cache). If the answer is there, great. If not, go to the big storeroom, copy the answer onto a sticky note, and keep going. When facts change, throw the old note away.",
+    "steps": [
+      ["Someone asks", "A visitor wants a note. We check the sticky notes first."],
+      ["Cache hit!", "The answer is on the sticky note. We reply instantly."],
+      ["Cache miss", "No sticky note yet, so we must go and look in the storeroom.", "warn"],
+      ["Ask the database", "The database finds the real answer. It is slower, but always right."],
+      ["Write a sticky note", "We copy the answer into the cache so the next person is faster."],
+      ["Reply to the visitor", "The visitor gets the answer."],
+      ["The note changes", "Someone edits the note. The old sticky note is now wrong.", "warn"],
+      ["Throw away the old copy", "We remove the old cache entry so nobody sees outdated words."]
+    ]
+  },
+  "system-design-async-job-queue-flow.svg": {
+    "title": "A ticket counter for slow jobs",
+    "caption": "A slow job gets a ticket and goes into a line. A helper does the work in the background while the visitor goes on with their day. If a job keeps failing, it goes to a special 'problem box' for a person to look at.",
+    "steps": [
+      ["A big request comes in", "Someone asks for a huge PDF report. That takes minutes."],
+      ["Give a ticket", "The app answers quickly: 'Got it. Your ticket number is 42.'"],
+      ["Put it in the line", "The job waits in a queue. The line has a size limit."],
+      ["A helper picks it up", "A worker takes the next job when it is free."],
+      ["Show progress", "The ticket number lets you ask: 'Is it done yet?'"],
+      ["Done: save the result", "The finished file is saved and the status says 'done'."],
+      ["Failed? Try again", "If it fails, the helper waits a bit and tries again a few times.", "warn"],
+      ["The problem box", "After too many failures the job goes to a dead-letter box for a human.", "warn"]
+    ]
+  },
+  "system-design-reliable-request-flow.svg": {
+    "title": "When something breaks, don't make it worse",
+    "caption": "Wait only a little (timeout), try again carefully (retry with waiting), and stop calling a broken helper for a while (circuit breaker). Always tell the user the truth.",
+    "steps": [
+      ["Call a helper", "Our app asks another service for something."],
+      ["Set a timer", "Only wait a short time. Waiting forever blocks everyone."],
+      ["No answer", "The timer rings. The helper is slow or broken.", "warn"],
+      ["Try again, later", "Wait a bit, then wait longer next time, with a little randomness."],
+      ["Too many failures", "The circuit breaker 'trips' and stops sending more calls.", "warn"],
+      ["Use a backup plan", "Show a saved copy or a clear message instead of a crash."],
+      ["Test gently", "After a pause, send one test call to see if it works again."],
+      ["Back to normal", "The helper answers, and the breaker closes.", "ok"]
+    ]
+  },
+  "system-design-sharding-and-replication.svg": {
+    "title": "Copies and slices of data",
+    "caption": "Replication makes copies so many people can read and so we survive a crash. Sharding cuts the data into slices so no single machine holds everything. Copies can be a moment behind.",
+    "steps": [
+      ["One main database", "All writes go to the primary, the 'master copy'."],
+      ["Make copies (replicas)", "Replicas copy the primary. Many readers can use them at once."],
+      ["Copies lag a little", "A new write takes a moment to arrive. A reader might see old data.", "warn"],
+      ["The data gets huge", "One machine cannot hold everything or answer fast enough."],
+      ["Cut it into slices", "Shard A holds names A to M, shard B holds N to Z."],
+      ["A router chooses", "A rule (the shard key) sends each request to the right slice."],
+      ["A slice gets crowded", "One very popular key makes one shard busy: a hot key.", "warn"],
+      ["Failover", "If the primary dies, a replica is promoted to take its place.", "ok"]
+    ]
+  },
+  "system-design-security-boundaries.svg": {
+    "title": "Doors and guards: where we check",
+    "caption": "Every door has a guard. The browser is not trusted. The server checks who you are and what you may touch, every time, and only the guards hold the keys.",
+    "steps": [
+      ["The browser", "Anyone can open developer tools. Never trust what the browser says."],
+      ["The front gate", "Checks the secure connection and blocks too many requests."],
+      ["Who are you?", "Authentication: check the login, token, or session."],
+      ["What may you do?", "Authorization: is this note yours? Is this action allowed?"],
+      ["The app asks for data", "It uses its own minimum key, not a master key."],
+      ["The database and files", "Only the app can reach them. No direct path from the internet."],
+      ["Secrets stay hidden", "Passwords and keys live in protected settings, not in code.", "warn"],
+      ["Safe logs", "Write down what happened, but never write passwords or private text."]
+    ]
+  },
+  "system-design-observability-three-pillars.svg": {
+    "title": "Three ways to see what your system is doing",
+    "caption": "Logs are a diary, metrics are a scoreboard, and traces are a trip itinerary. A request ID ties them together so you can follow one story from start to end.",
+    "steps": [
+      ["A request arrives", "We give it a unique request ID, like a name tag."],
+      ["Logs: the diary", "Short notes of what happened, each with the request ID."],
+      ["Metrics: the scoreboard", "Counts and timings: how many requests, how fast, how many errors."],
+      ["Traces: the itinerary", "Shows which services the request visited and how long each took."],
+      ["Something looks wrong", "The error count jumps, or answers become slow.", "warn"],
+      ["An alert rings", "The right person is told, with a note about what to check first."],
+      ["Follow the request ID", "Search the logs and trace to find exactly where it broke."],
+      ["Fix and learn", "Fix it, then write down what we learned so it does not happen again.", "ok"]
+    ]
+  },
+  "system-design-deployment-and-disaster-recovery.svg": {
+    "title": "Shipping safely and recovering when things go wrong",
+    "caption": "Build one package, test it, and roll it out in small steps. Keep backups and practice restoring them, because a backup you never tried is only a hope.",
+    "steps": [
+      ["Build the package", "Turn the code into one tested, numbered package."],
+      ["Deploy slowly", "Send it to a few servers first, then more."],
+      ["Check health", "Smoke tests ask: does it start? Can it reach the database?"],
+      ["Problem found", "Errors go up after the release.", "warn"],
+      ["Roll back", "Go back to the last version that worked."],
+      ["Backups every day", "Copy the data to a safe place regularly."],
+      ["Practice a restore", "Try bringing the data back. Time how long it takes."],
+      ["A whole region fails", "Switch to the second location and keep serving people.", "ok"]
+    ]
+  },
+  "system-design-tm-schedule-e2e.svg": {
+    "title": "One schedule app, from tap to saved data",
+    "caption": "A worked example: a manager changes a shift. We follow the request from the screen to the database and see where things can fail and how we handle each failure.",
+    "steps": [
+      ["The manager taps Save", "The screen sends the new shift time to the app."],
+      ["Check the login", "The app checks this is a signed-in manager of this store."],
+      ["Check the shape", "Is the date real? Is the end after the start?"],
+      ["Save in one step", "The schedule row and its history note are saved together."],
+      ["Tell the workers", "A message goes in a queue so notifications are sent later."],
+      ["Reply: saved", "The manager sees a success message right away.", "ok"],
+      ["If the database is down", "The app says 'try again soon'. It never says 'saved' when it was not.", "warn"],
+      ["Watch it later", "Logs and counters show how many saves worked and how fast."]
+    ]
+  },
+  "system-design-architecture-decision-tree.svg": {
+    "title": "Choosing the smallest design that works",
+    "caption": "Ask simple questions in order. Most apps only need the first box: one well-organized app and one database. Add more pieces only when a question says 'yes, we really need it'.",
+    "steps": [
+      ["Start here", "One app, one database, clear folders. This fits most projects."],
+      ["Too slow to read?", "Add a cache or a read copy of the database."],
+      ["Slow jobs?", "Add a queue and workers so people do not wait."],
+      ["Many users at once?", "Run several copies of the app behind a load balancer."],
+      ["Huge amounts of data?", "Split the data into shards, but only if it is really needed."],
+      ["Teams stepping on each other?", "Only now think about splitting into services."],
+      ["Must never go down?", "Add copies in more than one place and practice failing over."],
+      ["Keep it simple", "Every extra box is more to build, pay for, and fix.", "warn"]
+    ]
+  },
+  "java-source-compiler-jvm-flow.svg": {
+    "title": "How a Java program comes to life",
+    "caption": "You write words humans can read. The compiler translates them into bytecode. The JVM, a helper on every computer, runs the bytecode. That is why the same Java program works on Windows, Mac, and Linux.",
+    "steps": [
+      ["You write code", "A file like Hello.java, in words humans can read."],
+      ["The compiler", "javac checks for mistakes and translates the file."],
+      ["Bytecode", "A file like Hello.class, written in a language the JVM understands."],
+      ["The classpath", "A list of folders where Java looks for the pieces it needs."],
+      ["The JVM runs it", "The Java Virtual Machine turns bytecode into real actions."],
+      ["Your program works", "You see the output on the screen."],
+      ["Tests check it", "Small programs that confirm your code still does what you meant.", "ok"]
+    ]
+  },
+  "java-types-and-control-flow.svg": {
+    "title": "Values, decisions, and repeating",
+    "caption": "A variable is a labeled box that holds one kind of value. Conditions choose a path, loops repeat work, and methods bundle steps and give back an answer.",
+    "steps": [
+      ["A value goes in a box", "int age = 10; the box is labeled 'age' and holds whole numbers."],
+      ["Ask a question", "if (age >= 10) asks yes or no."],
+      ["Choose a path", "Yes runs one block of code. No runs another."],
+      ["Repeat with a loop", "for and while run the same steps again and again."],
+      ["Wrap steps in a method", "Give a group of steps a name so you can reuse it."],
+      ["Get an answer back", "return hands the result to whoever called the method."]
+    ]
+  },
+  "java-class-object-encapsulation.svg": {
+    "title": "Blueprint, house, and locked doors",
+    "caption": "A class is the blueprint. Every object you make with new is one real house. Private fields are locked rooms. Public methods are the doors you may use, so rules like 'never blank' always hold.",
+    "steps": [
+      ["The class (blueprint)", "class Note describes what every note has and can do."],
+      ["Make an object", "new Note(\"Math\") builds one real note from the blueprint."],
+      ["Private fields", "private String title; stays inside. Others cannot touch it directly."],
+      ["Public methods", "rename(\"Science\") is the door that everyone may use."],
+      ["The method checks rules", "It refuses a blank title before changing anything."],
+      ["The rule always holds", "That rule is the invariant. Every Note is always valid.", "ok"]
+    ]
+  },
+  "java-inheritance-composition-polymorphism.svg": {
+    "title": "Is-a and has-a",
+    "caption": "Inheritance says 'a Dog is an Animal'. Composition says 'a Car has an Engine'. Polymorphism means you can say 'make a sound' to any animal and each one answers in its own way. Prefer has-a when you can.",
+    "steps": [
+      ["A parent class", "Animal has things all animals share, like name."],
+      ["A child class", "Dog extends Animal, so it gets those things for free."],
+      ["Override a method", "Dog gives its own version of speak(): 'Woof'."],
+      ["Many shapes (polymorphism)", "Call speak() on any Animal and the real type answers."],
+      ["Has-a (composition)", "A Car holds an Engine and asks it to start."],
+      ["Why prefer has-a?", "You can swap the engine without rebuilding the car.", "ok"]
+    ]
+  },
+  "java-interface-and-implementation.svg": {
+    "title": "A promise and different ways to keep it",
+    "caption": "An interface lists what must be possible. The service only knows the promise. Memory and database versions both keep it, so we can swap them for tests or for real life.",
+    "steps": [
+      ["The service", "NoteService needs to save and find notes."],
+      ["The interface (promise)", "NoteRepository: save(note) and findById(id). No details."],
+      ["Memory version", "Keeps notes in a list. Perfect for quick tests."],
+      ["Database version", "Saves notes in a real database for real users."],
+      ["Choose at start-up", "A setting decides which version to plug in."],
+      ["Same behavior", "Both versions must keep the same promise.", "ok"]
+    ]
+  },
+  "java-records-collections-generics.svg": {
+    "title": "Little data cards and the shelves that hold them",
+    "caption": "A record is a small, unchangeable data card. A List keeps cards in order, a Set keeps only one of each, and a Map finds a card by its label. Generics tell Java what is on the shelf, like List<Note>.",
+    "steps": [
+      ["A record = a data card", "record Note(int id, String title) holds data, simply."],
+      ["List of notes", "List<Note>: cards in order. The same card can appear twice."],
+      ["Set of notes", "Set<Note>: no duplicates allowed. Great for 'unique tags'."],
+      ["Map by id", "Map<Integer, Note>: look up a card by its id quickly."],
+      ["Generics: the label", "The <Note> part promises only Notes go in, so no surprises come out."],
+      ["Pick the right shelf", "Order? List. Unique? Set. Lookup by key? Map.", "ok"]
+    ]
+  },
+  "java-exception-and-resource-flow.svg": {
+    "title": "When something goes wrong in Java",
+    "caption": "Code in a try block can throw an exception. A catch block handles it. try-with-resources always closes files and connections, even after a failure. The caller gets a short, safe message.",
+    "steps": [
+      ["Open a resource", "try (var file = open(...)) borrows a file or connection."],
+      ["Do the work", "Normal steps run. If all goes well, we are finished."],
+      ["Something fails", "An exception is thrown, like a ball thrown out of the game.", "warn"],
+      ["catch it", "A catch block receives it and decides what to do."],
+      ["Always clean up", "try-with-resources closes the file whether it worked or not."],
+      ["Safe message", "Return a short, clear error. Keep private details in the log.", "ok"]
+    ]
+  },
+  "java-files-http-jdbc-boundaries.svg": {
+    "title": "Java talking to the outside world",
+    "caption": "Files, web calls, and databases are all outside your program. Each one gets a careful wrapper that checks input, sets time limits, and cleans up.",
+    "steps": [
+      ["Read a file", "Files.readString(path) with a path kept inside a safe folder."],
+      ["Turn JSON into objects", "A JSON library maps text into your records."],
+      ["Call another service", "HttpClient sends a request, with a timeout."],
+      ["A repository", "A class that hides the database details from the rest of the app."],
+      ["JDBC", "Java's standard way of talking to databases, using ? parameters."],
+      ["The database", "Stores the data safely. Each answer comes back as rows.", "ok"]
+    ]
+  },
+  "java-thread-executor-and-memory.svg": {
+    "title": "Many things at once, and where data lives",
+    "caption": "Threads let Java do several things at once. An executor is a team of workers with a size limit. The stack holds the current steps, and the heap holds the objects. Never let work or memory grow without a limit.",
+    "steps": [
+      ["A request arrives", "Someone asks the server to do something."],
+      ["The executor team", "A fixed number of worker threads take turns."],
+      ["A task runs", "One worker runs your task. The others handle more tasks."],
+      ["The queue is bounded", "If too many tasks arrive, extra ones wait or are refused.", "warn"],
+      ["Stack and heap", "Stack = the steps now. Heap = the objects that live longer."],
+      ["Cancel or finish", "A task can be asked to stop, and must clean up.", "ok"]
+    ]
+  },
+  "java-testing-and-spring-bridge.svg": {
+    "title": "Testing, and how Spring helps",
+    "caption": "Unit tests check one small piece. HTTP tests check the whole path. Spring creates your objects (beans) and connects them, so the controller, service, and repository snap together.",
+    "steps": [
+      ["Unit test", "Checks one method alone, with made-up data."],
+      ["HTTP test", "Sends a real-looking request and checks the response."],
+      ["Spring starts", "Spring reads your classes and sets up beans."],
+      ["Controller", "Receives the web request and passes it on."],
+      ["Service", "Applies the business rules."],
+      ["Repository", "Talks to the database and returns the result.", "ok"]
+    ]
+  },
+  "python-runtime-and-venv.svg": {
+    "title": "Where your Python code runs",
+    "caption": "Python reads your file line by line. A virtual environment (venv) is a private toolbox for one project, so projects never fight over different versions of the same tool.",
+    "steps": [
+      ["You write code", "A file like app.py with plain, readable lines."],
+      ["The interpreter", "python reads the file and does what each line says."],
+      ["A virtual environment", "python -m venv .venv makes a private toolbox for this project."],
+      ["Install packages", "pip install fastapi puts new tools only in that toolbox."],
+      ["The program runs", "It becomes a running process on your computer."],
+      ["See it in the terminal", "Printed text and errors show up on the screen.", "ok"]
+    ]
+  },
+  "python-request-to-response.svg": {
+    "title": "From a click to an answer in FastAPI",
+    "caption": "A browser sends a request over HTTP. An ASGI server hands it to FastAPI, which picks the right route. The route calls the service, the service uses the repository, and the answer returns as JSON.",
+    "steps": [
+      ["The client asks", "A browser or app sends GET /notes/1."],
+      ["HTTP carries it", "The request travels as method, path, headers, and body."],
+      ["The ASGI server", "uvicorn receives it and gives it to FastAPI."],
+      ["The route", "@app.get('/notes/{id}') matches and runs your function."],
+      ["The service", "Applies the rules: does this note exist?"],
+      ["The repository", "Reads the data from the database."],
+      ["Build the response", "FastAPI turns the Python object into JSON."],
+      ["The client gets JSON", "Status 200 and the note's data appear on screen.", "ok"]
+    ]
+  },
+  "python-fastapi-route-validation.svg": {
+    "title": "FastAPI checks the input before your code runs",
+    "caption": "FastAPI reads the type hints on your function and checks the incoming data. If it does not match, FastAPI answers with a helpful error and your function is never called.",
+    "steps": [
+      ["A request comes in", "It carries parts: path, query, and a JSON body."],
+      ["FastAPI reads your hints", "def create(note: NoteIn) tells FastAPI what to expect."],
+      ["Check the data", "Pydantic checks each field: type, length, required."],
+      ["Data is wrong", "FastAPI returns 422 with a clear explanation. Your code is skipped.", "warn"],
+      ["Data is good", "Your function receives a clean, typed NoteIn object."],
+      ["Your route runs", "You focus on the real work, not on parsing."],
+      ["Response model", "The answer is filtered to only the fields you promised.", "ok"]
+    ]
+  },
+  "python-pydantic-schema-flow.svg": {
+    "title": "Pydantic: a checkpoint for data",
+    "caption": "Pydantic compares incoming JSON with a model you wrote. Good data becomes a clean Python object. Bad data becomes a clear list of what is wrong.",
+    "steps": [
+      ["Raw JSON arrives", "{\"title\": \"  Math \", \"pages\": \"12\"} could be anything."],
+      ["Your model", "class NoteIn(BaseModel) lists the fields and rules."],
+      ["Validate", "Pydantic checks and converts values, like '12' to 12."],
+      ["A typed object", "note.title and note.pages are ready to use safely."],
+      ["Build the response", "A response model chooses which fields to send back."],
+      ["Or an error", "Missing or wrong fields give a 422 with details.", "warn"]
+    ]
+  },
+  "python-layered-api.svg": {
+    "title": "Layers in a FastAPI app",
+    "caption": "Each layer has one job. The route talks HTTP, the service holds the rules, and the repository talks to the database. Dependencies are handed in, so each layer can be tested alone.",
+    "steps": [
+      ["Route", "Reads the request and returns the response. Nothing more."],
+      ["Dependency", "Depends() hands the route what it needs, like a service or login."],
+      ["Service", "Business rules: trim the title, reject blanks, check duplicates."],
+      ["Repository", "SQL lives here. The service never sees SQL."],
+      ["Database or provider", "SQLite for learning, PostgreSQL for real use."],
+      ["Test each layer", "Swap in a fake repository to test the service alone.", "ok"]
+    ]
+  },
+  "python-sqlite-postgresql-boundary.svg": {
+    "title": "One promise, two databases",
+    "caption": "The repository is a promise: save, find, delete. SQLite keeps it in one file for learning. PostgreSQL is the big shared database for real apps. The rest of the code cannot tell the difference.",
+    "steps": [
+      ["The service", "Asks the repository: 'find note 7'."],
+      ["Repository contract", "A short list of actions the service may use."],
+      ["SQLite version", "Stores data in one local file. Easy to start."],
+      ["PostgreSQL version", "A shared server database for many users at once."],
+      ["Settings choose one", "An environment setting picks which version runs."],
+      ["Migrations", "Numbered scripts change tables safely over time.", "ok"]
+    ]
+  },
+  "python-authentication-security-boundary.svg": {
+    "title": "Who are you, and what may you do?",
+    "caption": "The client sends a token. The API checks the token to learn who you are (authentication), then checks whether this note is yours (authorization). If not, the answer is 403 or 404.",
+    "steps": [
+      ["Log in", "Send a username and password over a secure connection."],
+      ["Get a token", "The server answers with a signed token, like a wristband."],
+      ["Send it each time", "The client attaches the token to every request."],
+      ["Check the token", "Is it real, unexpired, and signed by us? That is authentication."],
+      ["Check the record", "Does this note belong to this person? That is authorization."],
+      ["Allowed: give data", "The API returns the note.", "ok"],
+      ["Not allowed: deny", "Return 403 or 404 and never leak private details.", "warn"]
+    ]
+  },
+  "python-async-worker-job-flow.svg": {
+    "title": "Slow work in the background",
+    "caption": "The API answers right away with a job ID. A worker does the slow work and updates the status. The client can poll with the ID or cancel the job.",
+    "steps": [
+      ["A slow request", "Export all notes to a PDF: it may take minutes."],
+      ["Answer with a job ID", "202 Accepted and {\"job_id\": 42}. No waiting."],
+      ["Put it in the queue", "The job waits in a bounded line."],
+      ["A worker runs it", "It makes progress and saves its status."],
+      ["Retry on failure", "It tries again a few times with growing waits.", "warn"],
+      ["Poll for status", "GET /jobs/42 says queued, running, done, or failed."],
+      ["Cancel if needed", "The worker stops and cleans up its files."],
+      ["The result is ready", "The status becomes done with a link to the file.", "ok"]
+    ]
+  },
+  "python-testing-openapi-loop.svg": {
+    "title": "Test, read the docs, fix, repeat",
+    "caption": "FastAPI makes a live API guide called OpenAPI. Tests call your API like a client and check both success and failure. A failing test shows what to fix.",
+    "steps": [
+      ["Write code", "Add or change a route."],
+      ["Write a test", "Use pytest and TestClient to call the route."],
+      ["Run the tests", "pytest tells you what passed and what failed."],
+      ["A test fails", "Read the message. It points to the exact problem.", "warn"],
+      ["Fix the code", "Change the route or the rule, then run again."],
+      ["Read /docs", "OpenAPI shows every route and lets you try it."],
+      ["Check the contract", "Make sure the docs and the real answers still match."],
+      ["All green", "Safe to share or deploy.", "ok"]
+    ]
+  },
+  "python-deployment-health.svg": {
+    "title": "Packing and shipping a FastAPI app",
+    "caption": "Pin your tools in a lock file, build a container that has everything, send settings in from outside, and check health after starting. If it fails, roll back.",
+    "steps": [
+      ["Lock the versions", "A lock file records the exact libraries you tested."],
+      ["Build a container", "Docker packs your app and its tools into one box."],
+      ["Add settings", "Passwords and addresses come from the environment, not the code."],
+      ["Start the container", "The app starts and listens on a port."],
+      ["Health checks", "/health says alive. /ready says the database is reachable."],
+      ["Smoke test", "Make one real request to be sure it works."],
+      ["Something is wrong", "Errors appear after the release.", "warn"],
+      ["Roll back", "Start the previous container and look at the logs.", "ok"]
+    ]
+  }
+}

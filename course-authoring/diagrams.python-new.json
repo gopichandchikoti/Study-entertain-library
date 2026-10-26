@@ -1,0 +1,72 @@
+{
+  "python-reading-a-traceback.svg": {
+    "title": "Reading a Python error from the bottom up",
+    "caption": "The last line tells you what went wrong. The lines above show the path the program walked. Find the line from your own file, fix one thing, and run again.",
+    "steps": [
+      ["The program crashes", "Red text appears. This is a clue, not a punishment.", "warn"],
+      ["Read the LAST line", "It names the error type, like TypeError, and gives a message."],
+      ["Find the nearest line of yours", "Look for 'File app.py, line 5'. That is your code."],
+      ["Open that line", "Look at the exact spot and the values involved."],
+      ["Print or use the debugger", "print(total) shows what the value really is."],
+      ["Guess the cause", "Number plus text? Missing key? Wrong name?"],
+      ["Change ONE thing", "Fix it and run again. One change at a time."],
+      ["Error gone: remember", "Write down what it taught you.", "ok"]
+    ]
+  },
+  "python-strings-and-f-strings.svg": {
+    "title": "Text tools in Python",
+    "caption": "A string is a necklace of numbered letters. Methods like strip and split give back new strings. An f-string fills values into a sentence.",
+    "steps": [
+      ["A string", "word = \"python\" is six letters in a row."],
+      ["Index from 0", "word[0] is 'p'. word[-1] is 'n', the last."],
+      ["Slice a piece", "word[0:3] is 'pyt'. It stops before the end number."],
+      ["strip()", "'  Math  '.strip() gives 'Math'. Spaces are gone."],
+      ["split() and join()", "'a,b'.split(',') gives a list. '-'.join(list) glues it back."],
+      ["Strings never change", "Every method returns a NEW string. Save it in a variable."],
+      ["f-string", "f\"Hello, {name}!\" puts the value of name into the text."],
+      ["Format numbers", "f\"{3.14159:.2f}\" shows 3.14.", "ok"]
+    ]
+  },
+  "python-classes-and-objects.svg": {
+    "title": "A cookie cutter and its cookies",
+    "caption": "A class describes what every object has and can do. Each object keeps its own data. self is how a method refers to the object it is working on.",
+    "steps": [
+      ["Write the class", "class Note: is the cookie cutter."],
+      ["__init__ sets up", "def __init__(self, title) runs when a new object is made."],
+      ["Make an object", "n = Note('Math') makes one cookie from the cutter."],
+      ["self means this one", "Inside a method, self.title is this object's title."],
+      ["Call a method", "n.shout() runs the method. Python passes n as self."],
+      ["Many objects", "Another Note has its own title. Changing one leaves the other."],
+      ["Check the rules", "__init__ can refuse a blank title, so bad notes cannot exist.", "warn"],
+      ["Simple data?", "Use a @dataclass or a Pydantic model instead of a long class.", "ok"]
+    ]
+  },
+  "python-decorators-and-generators.svg": {
+    "title": "Wrapping paper and a vending machine",
+    "caption": "A decorator wraps a function to add behavior. A generator uses yield to hand back one value at a time. FastAPI uses both: @app.get registers routes, and yield dependencies clean up.",
+    "steps": [
+      ["A plain function", "def add(a, b): return a + b"],
+      ["Wrap it", "@loud above add means add = loud(add)."],
+      ["The wrapper runs", "It does something extra, like printing, then calls the real function."],
+      ["@app.get('/health')", "Registers the function as the handler for GET /health."],
+      ["A generator", "def count(): yield 1; yield 2 hands back one value at a time."],
+      ["yield pauses", "The function freezes at yield and continues later."],
+      ["Dependency with yield", "Open the session, yield it, then close it in finally.", "warn"],
+      ["Cleanup always runs", "Even after an error, the session is closed.", "ok"]
+    ]
+  },
+  "python-calling-another-api.svg": {
+    "title": "Your app as a careful client",
+    "caption": "When your app calls another service, protect it: set a timeout, check the status, keep the API key secret, and have a safe fallback ready.",
+    "steps": [
+      ["A visitor asks you", "GET /weather/Paris reaches your API."],
+      ["Read the secret key", "The API key comes from an environment variable."],
+      ["Send the request", "httpx.get(url, params=..., timeout=3.0)."],
+      ["Wait, but not forever", "The timeout stops one slow service from freezing your app.", "warn"],
+      ["Check the status", "raise_for_status() turns 4xx and 5xx into errors."],
+      ["Read the JSON", "response.json() becomes a Python dictionary."],
+      ["Failed? Fallback", "Return a clear 503 message, not the other service's raw error.", "warn"],
+      ["Reply to the visitor", "Send back only the fields your own API promises.", "ok"]
+    ]
+  }
+}

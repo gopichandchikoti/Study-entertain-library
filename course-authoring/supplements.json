@@ -1,0 +1,107 @@
+{
+  "java/07": {
+    "text": "Inheritance states an is-a relationship: a subclass must honor every promise callers rely on. Composition states a has-a relationship: the object delegates to a collaborator. Overriding changes behavior behind the same method contract; overloading chooses from different parameter signatures at compile time. Prefer composition when you only need reuse. An abstract class can share protected implementation, while an interface exposes a contract without forcing one parent hierarchy.",
+    "language": "java",
+    "code": "interface Renderer { String render(String title); }\nclass PlainRenderer implements Renderer {\n  public String render(String title) { return title.trim(); }\n}\nclass NoteView {\n  private final Renderer renderer;\n  NoteView(Renderer renderer) { this.renderer = renderer; }\n  String show(String title) { return renderer.render(title); }\n}\npublic class Example {\n  public static void main(String[] args) {\n    System.out.println(new NoteView(new PlainRenderer()).show(\"  APIs  \"));\n  }\n}"
+  },
+  "java/08": {
+    "text": "A sealed type declares a finite family of permitted implementations. It fits a known set such as success and not-found. An open interface fits third-party adapters better. Default methods add behavior to interfaces but must not create conflicting hidden state. A service depends on the interface; infrastructure implements that port instead of controlling the domain.",
+    "language": "java",
+    "code": "sealed interface Lookup permits Found, Missing {}\nrecord Found(String title) implements Lookup {}\nrecord Missing(long id) implements Lookup {}\npublic class Example {\n  public static void main(String[] args) {\n    Lookup result = new Found(\"APIs\");\n    if (result instanceof Found found) System.out.println(found.title());\n  }\n}"
+  },
+  "java/10": {
+    "text": "Generics put element contracts in the compiler. List<String> prevents adding an Integer, but erasure means most type arguments are not reified at runtime. A ? extends T collection produces T; a ? super T collection consumes T. Hash lookup is expected constant time under suitable hashing; sorting normally costs O(n log n). These estimates do not excuse an unbounded web response.",
+    "language": "java",
+    "code": "import java.util.*;\npublic class Example {\n  static int count(Collection<?> values) { return values.size(); }\n  public static void main(String[] args) {\n    List<String> titles = List.of(\"APIs\", \"Java\", \"APIs\");\n    Set<String> unique = new LinkedHashSet<>(titles);\n    System.out.println(count(unique));\n  }\n}"
+  },
+  "java/13": {
+    "text": "A LocalDate describes a day; Instant describes a timestamp. ZonedDateTime adds timezone rules. Never infer a store timezone from the server location. String.length counts UTF-16 code units; supplementary characters may use two. Use UTF-8 for portable files and select Locale explicitly for language-dependent case conversion.",
+    "language": "java",
+    "code": "import java.time.*;\nimport java.nio.charset.StandardCharsets;\npublic class Example {\n  public static void main(String[] args) {\n    LocalDate day = LocalDate.of(2026, 10, 2);\n    Instant start = day.atStartOfDay(ZoneId.of(\"America/Chicago\")).toInstant();\n    System.out.println(start);\n    System.out.println(new String(\"API\".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8));\n  }\n}"
+  },
+  "java/16": {
+    "text": "ExecutorService owns an execution policy; callers own deadlines and cancellation. A Future.get timeout stops waiting, not necessarily the operation. Preserve interruption intent rather than swallowing InterruptedException. Virtual threads are newer than this Java 17 baseline; they reduce waiting-thread costs without removing database or CPU limits. In production, configure a bounded queue instead of the convenience unbounded queue used in this two-task demonstration.",
+    "language": "java",
+    "code": "import java.util.concurrent.*;\npublic class Example {\n  public static void main(String[] args) throws Exception {\n    ExecutorService pool = Executors.newFixedThreadPool(2);\n    try {\n      Future<String> result = pool.submit(() -> \"APIs\");\n      System.out.println(result.get(1, TimeUnit.SECONDS));\n    } finally { pool.shutdownNow(); }\n  }\n}"
+  },
+  "python-first-api/06": {
+    "text": "Use a tuple for a fixed positional group, a list for order, a set for uniqueness, and a dict for key lookup. Comprehensions construct values; generators produce them lazily. Repeated dictionary lookup helps an in-memory catalog. A million database rows should be filtered by a query rather than loaded into Python.",
+    "language": "python",
+    "code": "notes = [{\"id\": 1, \"title\": \"APIs\"}, {\"id\": 2, \"title\": \"Python\"}]\nby_id = {note[\"id\"]: note for note in notes}\ntitles = sorted(note[\"title\"] for note in notes)\nassert by_id[1][\"title\"] == \"APIs\"\nprint(titles)"
+  },
+  "python-first-api/07": {
+    "text": "An import evaluates a module and reuses its module object. Keep side effects out of imports so tests can load functions without starting servers. A package has a public surface; helpers remain implementation details. A virtual environment isolates dependencies, not untrusted code. Lock dependencies and review installation hooks.",
+    "language": "python",
+    "code": "from pathlib import Path\nfrom importlib.util import find_spec\n\nprint(Path(\"notes.json\").suffix)\nassert find_spec(\"json\") is not None"
+  },
+  "python-first-api/08": {
+    "text": "Use try/except for expected exceptions, else for success-only work, and finally for unconditional cleanup. A context manager packages setup and cleanup into with. Exception chaining preserves the cause for server diagnostics; safe API errors must not serialize that chain. Catch specific failures instead of masking programming bugs as empty catalogs.",
+    "language": "python",
+    "code": "from contextlib import contextmanager\n\n@contextmanager\ndef session():\n    print(\"open\")\n    try:\n        yield {\"title\": \"APIs\"}\n    finally:\n        print(\"close\")\n\nwith session() as note:\n    assert note[\"title\"] == \"APIs\""
+  },
+  "python-first-api/09": {
+    "text": "A dataclass generates data-object methods. A Protocol describes structural behavior for adapters without requiring one inheritance hierarchy. An annotation aids static analysis; Pydantic or explicit checks validate runtime input. A union describes alternatives; omitted input is different from a required field whose value may be None.",
+    "language": "python",
+    "code": "from dataclasses import dataclass\nfrom typing import Protocol\n\n@dataclass(frozen=True)\nclass Note:\n    id: int\n    title: str\n\nclass Notes(Protocol):\n    def get(self, note_id: int) -> Note | None: ...\n\nassert Note(1, \"APIs\") == Note(1, \"APIs\")"
+  },
+  "python-first-api/17": {
+    "text": "A repository owns SQL and connection lifetime. Placeholders bind values, not SQL identifiers; choose identifiers from an allowlist. SQLite is useful for local teaching, with transactions and constraints. An in-memory database lives only as long as its connection, so connection ownership affects test correctness.",
+    "language": "python",
+    "code": "import sqlite3\n\nwith sqlite3.connect(\":memory:\") as db:\n    db.execute(\"CREATE TABLE notes(id INTEGER PRIMARY KEY, title TEXT NOT NULL)\")\n    db.execute(\"INSERT INTO notes(title) VALUES (?)\", (\"APIs\",))\n    title = db.execute(\"SELECT title FROM notes WHERE id = ?\", (1,)).fetchone()[0]\n    assert title == \"APIs\"\n    print(title)"
+  },
+  "nodejs/07": {
+    "text": "The call stack finishes synchronous work before promise continuations run. Timers specify earliest eligibility, not exact execution time. Excessive microtasks can starve other work. Measure event-loop delay under load. A long synchronous transform still blocks other requests inside an async function.",
+    "language": "javascript",
+    "code": "console.log(\"sync\");\nPromise.resolve().then(() => console.log(\"microtask\"));\nsetTimeout(() => console.log(\"timer\"), 0);\n// Expected: sync, microtask, timer"
+  },
+  "nodejs/09": {
+    "text": "AbortController communicates cancellation intent. The called API must support the signal; abort does not undo a committed write. Clear timers and close resources in finally. Use one request deadline across layers rather than a fresh unrestricted timeout for every call.",
+    "language": "javascript",
+    "code": "const controller = new AbortController();\nconst timer = setTimeout(() => controller.abort(), 50);\ntry {\n  await new Promise((resolve, reject) => {\n    controller.signal.addEventListener(\"abort\", () => reject(new Error(\"cancelled\")), { once: true });\n    setTimeout(resolve, 10);\n  });\n  console.log(\"finished\");\n} finally { clearTimeout(timer); }"
+  },
+  "nodejs/17": {
+    "text": "Readable, writable, and transform streams move chunks, not whole files. When a writable cannot keep up, producers must wait for drain; pipeline coordinates backpressure and propagates failures. Validate byte ranges before opening a bounded stream; return 206 or 416 deliberately. Destroy streams on client disconnect.",
+    "language": "javascript",
+    "code": "import { Readable, Writable } from \"node:stream\";\nimport { pipeline } from \"node:stream/promises\";\nlet result = \"\";\nconst sink = new Writable({ write(chunk, encoding, done) { result += chunk.toString(); done(); } });\nawait pipeline(Readable.from([\"API\", \" notes\"]), sink);\nconsole.log(result);"
+  },
+  "spring-boot/04": {
+    "text": "SpringApplication creates the application context, selects configuration, discovers components, and starts the embedded server. Auto-configuration is conditional on the classpath, environment, and existing beans. Inspect the conditions report when behavior surprises you. Constructor injection declares required dependencies; starting workers in a constructor hides lifecycle ownership.",
+    "language": "java",
+    "code": "// Inside the generated Boot project:\n@SpringBootApplication\npublic class StudyApplication {\n  public static void main(String[] args) {\n    SpringApplication.run(StudyApplication.class, args);\n  }\n}"
+  },
+  "spring-boot/05": {
+    "text": "A bean is managed by the Spring context. Singleton means one instance per context, not per world-wide deployment. Component scanning starts at declared packages. Lifecycle callbacks define initialization and cleanup. Proxies implement concerns such as transactions; calling through this can bypass interception. Prototype beans need explicit cleanup ownership.",
+    "language": "java",
+    "code": "@Configuration\nclass NotesConfig {\n  @Bean\n  Clock applicationClock() { return Clock.systemUTC(); }\n}\n// Inject Clock in a constructor; replace with Clock.fixed in tests."
+  },
+  "spring-boot/13": {
+    "text": "@Transactional normally applies through a proxy. Keep transactions around related database changes rather than slow external calls. Optimistic locking detects a stale version. An outbox row commits with a business row and publishes later. A retry after an unknown response must keep the original idempotency key.",
+    "language": "sql",
+    "code": "BEGIN;\nINSERT INTO notes(id, title) VALUES (1, 'APIs');\nINSERT INTO outbox(event_id, type, aggregate_id) VALUES ('event-1', 'note-created', 1);\nCOMMIT;\n-- Set up the tables first; a worker publishes committed outbox rows."
+  },
+  "spring-boot/17": {
+    "text": "MVC commonly uses blocking handlers and JDBC. WebFlux uses reactive streams and can avoid blocked request threads when important I/O boundaries use compatible nonblocking drivers. A blocking driver on an event-loop path loses that benefit. Reactive code adds debugging and context costs; choose it for measured concurrency needs.",
+    "language": "text",
+    "code": "Blocking: request -> MVC thread -> JDBC wait -> response\nReactive: request -> event loop -> nonblocking driver -> continuation -> response\nCPU work: both need a bounded worker boundary"
+  },
+  "system-design/02": {
+    "text": "Assume 1,200 active readers, one read per minute, and a peak multiplier of five. Average reads are 1200 / 60 = 20 RPS; assumed peak is 100 RPS. At 10 KiB per response, this is roughly 1 MiB/s before overhead. These are planning assumptions, not measured throughput. Measure tail latency and errors before promising capacity.",
+    "language": "json",
+    "code": "{ \"activeReaders\": 1200, \"readsPerMinute\": 1, \"averageRps\": 20, \"assumedPeakMultiplier\": 5, \"assumedPeakRps\": 100 }"
+  },
+  "system-design/14": {
+    "text": "RPO is the tolerable lost-data interval; RTO is the tolerable recovery time. Daily backups have a potential one-day RPO unless log recovery improves it. Offsite copies protect against site loss, but a restore drill proves usability. Record restore duration, checksums, row counts, safe credential handling, and the recovery owner.",
+    "language": "json",
+    "code": "{ \"rpoMinutes\": 60, \"rtoMinutes\": 120, \"backup\": \"encrypted-offsite\", \"restoreChecks\": [\"checksum\", \"row-count\", \"read-smoke\"], \"numbers\": \"objectives, not observations\" }"
+  },
+  "mcp/04": {
+    "text": "Pin the wire revision. The supplied course targets 2026-07-28 self-contained requests with per-request capabilities. The 2025-11-25 initialization handshake is a different path; do not combine the models by guesswork. Unsupported features need a supported fallback or a safe rejection. Optional extensions require explicit support checks.",
+    "language": "json",
+    "code": "{ \"exercise\": \"compatibility-plan\", \"modernRevision\": \"2026-07-28\", \"legacyRevision\": \"2025-11-25\", \"unsupportedFeature\": \"reject-or-supported-fallback\" }"
+  },
+  "mcp/09": {
+    "text": "Elicitation lets the host ask a user for input. Accept, decline, and cancel need defined continuations. Never collect secrets through a generic form when secure authorization is needed. Roots express filesystem intent, not path confinement. Sampling stays under host policy; support is revision-specific.",
+    "language": "json",
+    "code": "{ \"request\": \"choose-category\", \"allowed\": [\"java\", \"api\"], \"userDecision\": \"decline\", \"serverBehavior\": \"stop-without-writing\" }"
+  }
+}

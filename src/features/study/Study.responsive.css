@@ -1,0 +1,58 @@
+@media (max-width: 1050px) {
+  .workspace { grid-template-columns: 205px minmax(0, 1fr); gap: 22px; }
+  .content-grid { grid-template-columns: 1fr; }
+  .reading-column { grid-row: 1; }
+  .reading-column { padding-top: 0; }
+  .note-deck { grid-row: 2; }
+  .reading-surface, .surface-content { min-height: 540px; }
+}
+
+@media (max-width: 720px) {
+  .topbar { align-items: flex-start; flex-direction: column; padding: 16px 17px; gap: 14px; }
+  .topbar-actions { width: 100%; flex-wrap: wrap; row-gap: 10px; }
+  .shell-mode-switch { flex: 1 1 100%; }
+  .shell-mode-switch button { flex: 1; justify-content: center; padding: 0 4px; }
+  .topbar-actions > .profile-control { margin-left: auto; }
+  .search-box { min-width: 0; flex: 1; }
+  .workspace { display: block; padding: 22px 15px 44px; }
+  .library-rail { margin-bottom: 24px; }
+  .library-rail.is-collapsed { width: auto; }
+  .rail-heading { padding-bottom: 13px; }
+  .view-tabs { grid-template-columns: repeat(3, 1fr); }
+  .view-tabs button { min-height: 42px; justify-content: center; padding: 0 4px; font-size: 10px; }
+  .view-tabs button span { display: none; }
+  .rail-divider, .rail-section { display: none; }
+  .stage-intro { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .stage-actions { width: 100%; justify-content: flex-start; }
+  .stage-intro h2 { font-size: 36px; }
+  .progress-strip { align-items: flex-start; flex-wrap: wrap; gap: 11px; }
+  .progress-copy { min-width: 0; flex: 1; }
+  .progress-track { order: 3; flex-basis: 100%; }
+  .progress-hint { margin-left: auto; }
+  .content-grid { gap: 16px; }
+  .reading-surface, .surface-content { min-height: 480px; }
+  .markdown-body { padding: 27px 20px 40px; }
+  .markdown-body h1 { font-size: 38px; }
+  .markdown-body p, .markdown-body li { font-size: 15px; }
+  .reading-size-large p, .reading-size-large li { font-size: 17px; }
+  .note-toolbar { padding: 13px 16px; }
+  .image-preview { padding: 19px; }
+  .image-preview-heading { align-items: flex-start; flex-direction: column; }
+  .image-frame { min-height: 290px; }
+  .file-preview { padding: 19px; }
+  .file-preview-actions { width: 100%; }
+  .file-preview-actions > * { flex: 1; }
+  .pdf-frame { min-height: 410px; }
+  .epub-frame { min-height: 410px; }
+  .epub-controls span { display: none; }
+  .upload-dialog { padding: 19px; }
+  .upload-fields { grid-template-columns: 1fr; }
+  .dialog-footer > * { flex: 1; }
+  .signal-grid > div { min-height: 70px; padding: 9px; }
+  .signal-grid strong { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+  .surface-content { transform: translateZ(0); }
+}

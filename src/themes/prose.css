@@ -1,0 +1,22 @@
+.markdown-body { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 38px clamp(22px, 6vw, 72px) 54px; color: var(--ink); }
+.reading-size-large { max-width: 840px; }
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 { color: var(--ink); font-family: 'Fraunces Variable', Georgia, serif; letter-spacing: -0.035em; line-height: 1.04; }
+.markdown-body h1 { margin: 0 0 22px; font-size: clamp(34px, 5vw, 57px); }
+.markdown-body h2 { margin: 40px 0 12px; font-size: 29px; }
+.markdown-body h3 { margin: 28px 0 9px; font-size: 22px; }
+.markdown-body p, .markdown-body li { color: color-mix(in srgb, var(--ink) 85%, var(--muted)); font-size: 16px; line-height: 1.78; }
+.reading-size-large p, .reading-size-large li { font-size: 18px; }
+.markdown-body p { margin: 0 0 18px; }
+.markdown-body ul, .markdown-body ol { padding-left: 24px; margin: 9px 0 22px; }
+.markdown-body li { padding-left: 4px; margin: 7px 0; }
+.markdown-body li::marker { color: var(--accent); }
+.markdown-body a { color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.markdown-body blockquote { margin: 24px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--accent); color: var(--muted); }
+.markdown-body blockquote p { color: inherit; }
+.markdown-body code { padding: 2px 5px; border-radius: 4px; color: var(--accent); background: var(--accent-soft); font: 0.86em 'DM Mono', monospace; }
+.markdown-body pre { overflow: auto; margin: 22px -14px; padding: 17px; border-radius: 10px; color: #dbe8df; background: var(--code); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06); }
+.markdown-body pre code { padding: 0; color: inherit; background: transparent; font-size: 12px; line-height: 1.65; }
+.markdown-body table { display: block; overflow: auto; width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 13px; }
+.markdown-body th, .markdown-body td { min-width: 120px; padding: 9px 11px; border: 1px solid var(--line-strong); text-align: left; }
+.markdown-body th { color: var(--ink); background: var(--accent-soft); }
+.markdown-body img { display: block; max-width: 100%; height: auto; margin: 24px auto; border-radius: 8px; border: 1px solid var(--line); box-shadow: var(--shadow-small); }

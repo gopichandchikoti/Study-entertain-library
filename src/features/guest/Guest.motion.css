@@ -1,0 +1,10 @@
+.guest-tabs[data-indicator]::after {
+  border-radius: 8px;
+  background: var(--paper-raised);
+  box-shadow: 0 3px 10px rgba(29, 37, 35, 0.1);
+}
+
+.guest-tabs[data-indicator] button.is-active {
+  background: transparent;
+  box-shadow: none;
+}

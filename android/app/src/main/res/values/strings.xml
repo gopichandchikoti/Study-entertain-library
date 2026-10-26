@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Second Brain Study Library</string>
+    <string name="network_error">The study library could not be reached. Check your connection and try again.</string>
+    <string name="reader_restarted">The reader restarted unexpectedly. Try loading the library again.</string>
+    <string name="https_required">Release builds require an HTTPS library URL.</string>
+    <string name="external_link_error">This external link could not be opened.</string>
+    <string name="download_description">Study Library download</string>
+</resources>

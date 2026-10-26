@@ -1,0 +1,42 @@
+.learning-lesson { margin-block: 24px; min-width: 0; }
+.lesson-stepper { display: flex; gap: 6px; flex-wrap: wrap; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.learning-lesson button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; border: 1px solid var(--line-strong); background: var(--paper-raised); color: var(--ink); border-radius: 8px; padding: 9px 14px; font: inherit; cursor: pointer; white-space: normal; }
+.learning-lesson button:disabled { opacity: .55; cursor: not-allowed; }
+.learning-lesson button:focus-visible, .learning-lesson input:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.lesson-stepper button[aria-current] { background: var(--teal-soft); border-color: var(--teal); }
+.lesson-stepper small { font-family: 'DM Mono', monospace; }
+.learning-status { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 16px 0; }
+.learning-status span, .learning-hint { color: var(--muted); font-size: .85rem; }
+.learning-panel { min-width: 0; }
+.learning-panel:focus { outline: none; }
+.learning-panel h2 { font-family: 'Fraunces Variable', serif; }
+.learning-primary { background: var(--teal) !important; color: var(--paper-raised) !important; }
+.learning-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-block: 20px; }
+.learning-next { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 16px; }
+.quiz-question { min-width: 0; border: 0; border-top: 1px solid var(--line); margin: 24px 0; padding: 20px 0 0; }
+.quiz-question legend { font-weight: 600; max-width: 100%; overflow-wrap: anywhere; padding: 0; }
+.quiz-question legend small { display: block; color: var(--muted); font-weight: 400; padding-bottom: 8px; }
+.quiz-question label { display: flex; align-items: baseline; gap: 12px; border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-top: 8px; min-height: 44px; cursor: pointer; overflow-wrap: anywhere; }
+.quiz-question label.is-selected { border-color: var(--teal); background: var(--teal-soft); }
+.quiz-question input { flex: none; accent-color: var(--teal); }
+.quiz-feedback { border-left: 3px solid var(--teal); margin-top: 16px; padding-left: 16px; }
+.quiz-feedback button { pointer-events: auto; }
+.quiz-feedback p, .quiz-feedback li { font-size: .9rem; line-height: 1.6; }
+.learning-score { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border-block: 1px solid var(--line); padding: 20px 0; }
+.assignment-panel progress { width: 100%; height: 8px; accent-color: var(--teal); }
+.learning-editor { overflow: hidden; border: 1px solid var(--line-strong); border-radius: 8px; }
+.learning-editor .cm-editor { background: var(--code); color: #ebefe5; font-size: 14px; }
+.learning-editor .cm-content { min-height: 240px; font-family: 'DM Mono', monospace; caret-color: #fff; }
+.learning-editor .cm-gutters { background: #182321; color: #91a19a; border-color: #30413a; }
+.learning-editor .cm-activeLine, .learning-editor .cm-activeLineGutter { background: #263b36; }
+.learning-editor .cm-scroller { overflow: auto; max-height: 480px; }
+.learning-editor .cm-focused { outline: 2px solid var(--teal); outline-offset: -2px; }
+.learning-terminal { background: var(--code); color: #ebefe5; border-radius: 8px; padding: 18px; margin-block: 20px; overflow-wrap: anywhere; }
+.learning-terminal pre, .practical-panel details pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 280px; overflow: auto; font-family: 'DM Mono', monospace; font-size: .85rem; }
+.practice-tests { list-style: none; padding: 0; }
+.practice-tests li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); padding: 12px 0; overflow-wrap: anywhere; }
+.practice-tests li p { width: 100%; }
+.runner-unavailable, .exercise-error { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 16px; line-height: 1.6; }
+.learning-lesson [id] { scroll-margin-top: 24px; }
+@media(max-width: 620px) { .lesson-stepper button { flex: 1; padding: 9px 7px; font-size: 12px; } .lesson-stepper button svg { display: none; } .learning-actions button { width: 100%; } }
+@media(prefers-reduced-motion: reduce) { .learning-lesson * { scroll-behavior: auto !important; transition: none !important; } }

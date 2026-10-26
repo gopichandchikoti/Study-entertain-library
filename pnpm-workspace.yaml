@@ -1,0 +1,11 @@
+packages:
+  - '.'
+# Install scripts are reviewed explicitly: esbuild (tsx and webpack tooling) may run; the funding-banner scripts may not.
+allowBuilds:
+  esbuild: true
+  core-js: false
+  es5-ext: false
+overrides:
+  'epubjs>@xmldom/xmldom': '0.8.15'
+  # GHSA-27r3-jxmh-p828: body-parser below 2.4.0 can be exhausted by trailing bytes after a compressed body.
+  'body-parser': '>=2.4.0'

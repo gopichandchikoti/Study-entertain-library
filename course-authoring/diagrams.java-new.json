@@ -1,0 +1,72 @@
+{
+  "java-reading-a-stack-trace.svg": {
+    "title": "Reading a Java error like a map",
+    "caption": "Read the first line for the kind of problem, then walk down the list of calls until you reach a line from your own code. That is the place to open and fix.",
+    "steps": [
+      ["The program crashes", "Red text appears. Do not panic, it is a clue.", "warn"],
+      ["Read the first line", "It names the problem: NullPointerException, and often why."],
+      ["See the 'at' lines", "Each one is a method that was running, newest at the top."],
+      ["Skip Java's own lines", "Lines from java.base or libraries are usually not the real cause."],
+      ["Find your own file", "Look for a line like Greeter.java:7. That is your code."],
+      ["Open that line", "Look at the exact spot and ask: what could be null or wrong here?"],
+      ["Change one thing", "Fix it, run again, and check that the error is gone."],
+      ["Write a test", "A small test makes sure the bug never comes back.", "ok"]
+    ]
+  },
+  "java-array-boxes-and-index.svg": {
+    "title": "An array is a row of numbered boxes",
+    "caption": "The boxes are numbered from 0. The last box is length minus one. Asking for a number outside the row causes ArrayIndexOutOfBoundsException.",
+    "steps": [
+      ["Make the array", "int[] scores = {5, 8, 3, 9, 1}; makes five boxes in a row."],
+      ["Box 0 holds 5", "scores[0] is the first box. Counting starts at zero."],
+      ["Box 2 holds 3", "scores[2] is the third box. You can read it or change it."],
+      ["Box 4 holds 1", "scores[4] is the last box, because length is 5 and 5 minus 1 is 4."],
+      ["Walk with a loop", "for (int i = 0; i < scores.length; i++) visits every box."],
+      ["Or use for-each", "for (int s : scores) visits each value without an index."],
+      ["Box 5 does not exist", "scores[5] crashes with ArrayIndexOutOfBoundsException.", "warn"],
+      ["Need to grow?", "Use an ArrayList. A plain array has a fixed size.", "ok"]
+    ]
+  },
+  "java-static-versus-instance.svg": {
+    "title": "Shared by the school, owned by the student",
+    "caption": "Static things belong to the class and are shared by every object. Instance things belong to one object. final means a value is set once and never changed.",
+    "steps": [
+      ["The class", "class Student is the blueprint."],
+      ["Static: one shared copy", "static int count counts every Student ever made."],
+      ["Make object Ava", "new Student() creates one student with their own name."],
+      ["Make object Ben", "Ben has a different name. Changing Ava does not change Ben."],
+      ["Each constructor adds 1", "count++ runs for each new student, so count becomes 2."],
+      ["Read it from the class", "Student.count is 2, no matter which student you ask."],
+      ["final means once", "static final int MAX = 80; is a constant that cannot change."],
+      ["this is the current object", "this.name means the name of the object we are inside.", "ok"]
+    ]
+  },
+  "java-four-design-patterns.svg": {
+    "title": "Four friendly design patterns",
+    "caption": "Singleton: only one. Factory: a maker. Builder: step-by-step assembly. Observer: a list of listeners that get told. Use them only when they solve a real problem.",
+    "steps": [
+      ["Singleton", "Only one object exists, like the school bell. Use rarely."],
+      ["Factory", "A method that makes objects: Shape.create(\"circle\")."],
+      ["Builder", "Make a big object step by step with named settings, then build()."],
+      ["Observer", "A subject keeps a list of listeners and tells them about changes."],
+      ["Pick by problem", "One shared object? Many options? Many listeners? Choose the pattern that fits."],
+      ["Watch the cost", "Every pattern adds extra code to read and test.", "warn"],
+      ["Keep it simple", "If a plain constructor is clear, you do not need a pattern."],
+      ["Use shared words", "Names like 'factory' help the team understand quickly.", "ok"]
+    ]
+  },
+  "java-equals-hashcode-and-sorting.svg": {
+    "title": "Same or different? First or last?",
+    "caption": "A HashSet uses hashCode to find the right drawer and equals to confirm a match, so the two must agree. A Comparator puts items in the order you choose.",
+    "steps": [
+      ["Two notes arrive", "Both say id 1 and title Math."],
+      ["Compute hashCode", "Objects.hash(id, title) gives the same number for both."],
+      ["Go to the drawer", "The set jumps to the drawer for that number."],
+      ["Ask equals", "Are they the same? Yes, so the set keeps only one.", "ok"],
+      ["No equals override", "Java thinks they are two objects and keeps both.", "warn"],
+      ["Sort the list", "list.sort(...) needs a rule for which comes first."],
+      ["Write a Comparator", "Comparator.comparing(Note::title) sorts by title."],
+      ["Records help", "A record has correct equals and hashCode for free."]
+    ]
+  }
+}

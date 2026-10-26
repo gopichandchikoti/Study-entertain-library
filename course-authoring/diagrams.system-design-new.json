@@ -1,0 +1,100 @@
+{
+  "system-design-load-balancer-cdn-gateway.svg": {
+    "title": "Three helpers at the front of a busy site",
+    "caption": "The gateway checks every request, the load balancer shares the work between app copies, and the CDN keeps copies of files near the visitor so they arrive fast.",
+    "steps": [
+      ["A visitor arrives", "Someone opens the site from their phone."],
+      ["Files from the CDN", "Pictures and style files come from a nearby copy, not from far away."],
+      ["The gateway", "Checks the login and the limits, then picks the right service."],
+      ["The load balancer", "Sends the request to a server that is free."],
+      ["Health checks", "It asks each server 'are you okay?' and skips the ones that fail.", "warn"],
+      ["App copy 1, 2, 3", "Any copy can answer, because they do not remember visitors alone."],
+      ["Shared memory", "Logins and carts live in a shared place that every copy can read."],
+      ["Fast reply", "The visitor sees the page quickly, even on a busy day.", "ok"]
+    ]
+  },
+  "system-design-rate-limiter-token-bucket.svg": {
+    "title": "The token bucket: fair turns for everyone",
+    "caption": "Every request spends a token. Tokens refill slowly. A quick burst is allowed, but nobody can take more than their fair share for long.",
+    "steps": [
+      ["A request arrives", "It carries the user's id or key so we know whose bucket to use."],
+      ["Look in the bucket", "Each user has their own bucket, for example 10 tokens."],
+      ["Token found", "Spend one token and let the request through.", "ok"],
+      ["Bucket is empty", "Too many requests too fast.", "warn"],
+      ["Reply 429", "'Too many requests' plus a Retry-After hint: wait 5 seconds.", "warn"],
+      ["Tokens refill", "One new token arrives every second, up to the maximum."],
+      ["The user waits", "A polite program waits for the time in the hint."],
+      ["Everyone stays happy", "One noisy user cannot use up all the power.", "ok"]
+    ]
+  },
+  "system-design-search-inverted-index.svg": {
+    "title": "How search finds words fast",
+    "caption": "Instead of reading every note for each search, we build an index in advance, like the index in the back of a book. Then a search is just a quick lookup.",
+    "steps": [
+      ["A note is saved", "'The cat eats cat food' is saved in the database."],
+      ["Split into words", "the, cat, eats, cat, food. Tiny words may be dropped."],
+      ["Make it tidy", "Lowercase everything so 'Cat' and 'cat' match."],
+      ["Build the index", "cat: note 5, 18. food: note 5, 40."],
+      ["A user searches", "They type: cat food."],
+      ["Look up each word", "cat gives 5 and 18. food gives 5 and 40."],
+      ["Keep the overlap", "Note 5 has both words, so it is the best match."],
+      ["Rank and show", "Best matches first. The index may be a moment behind.", "ok"]
+    ]
+  },
+  "system-design-cap-choice.svg": {
+    "title": "When the line between copies breaks",
+    "caption": "If two copies cannot talk, we must pick: stay correct and say 'wait', or keep answering and fix differences later. Pick by feature: money must be exact, likes can be a little old.",
+    "steps": [
+      ["Two copies of the data", "Ana's notepad and Ben's notepad are kept the same by talking."],
+      ["The line breaks", "They cannot talk for a while. This is a partition.", "warn"],
+      ["Someone asks Ana", "'What is the score?' She cannot check with Ben."],
+      ["Choice A: be correct", "'Please wait until I can confirm.' Safe, but no answer now."],
+      ["Choice B: always answer", "'Last I knew it was 10.' Quick, but maybe old."],
+      ["Money or tickets?", "Choose A. A wrong answer here costs real money.", "warn"],
+      ["Likes or views?", "Choose B. A number that is a little old does no harm."],
+      ["The line returns", "The copies compare notes and fix any conflicts.", "ok"]
+    ]
+  },
+  "system-design-consistent-hashing-ring.svg": {
+    "title": "A clock face for sharing data",
+    "caption": "Machines and keys are placed on a circle. A key belongs to the first machine you meet clockwise. When a machine is added, only the keys next to it move, not everything.",
+    "steps": [
+      ["Draw a circle", "Think of a clock face with many tiny positions."],
+      ["Place the machines", "Machines A, B, and C are put at spots on the circle."],
+      ["Hash a key", "The key 'user42' becomes a number, which is a spot on the circle."],
+      ["Walk clockwise", "The first machine you reach stores that key."],
+      ["Add machine D", "It lands between A and B on the circle."],
+      ["Only a few keys move", "D takes only the keys between A and D. The rest stay.", "ok"],
+      ["Compare: modulo rule", "With key modulo machines, nearly every key moves.", "warn"],
+      ["Virtual nodes", "Each machine takes many spots, so the load is shared evenly."]
+    ]
+  },
+  "system-design-url-shortener-flow.svg": {
+    "title": "Making and opening a short link",
+    "caption": "Creating a link saves it in the database. Opening a link checks the cache first, because most traffic is opening, and then redirects the visitor to the long address.",
+    "steps": [
+      ["Create: long link in", "A user sends a very long web address."],
+      ["Make a unique number", "The database gives the next number, for example 125."],
+      ["Turn it into a code", "125 in base62 becomes a short code like 'cb'. Longer in real life."],
+      ["Save and reply", "Save code and long link, and answer sho.rt/cb."],
+      ["Open: a visitor clicks", "The browser asks for sho.rt/cb."],
+      ["Check the cache", "A popular code is answered straight from memory."],
+      ["Or ask the database", "On a miss, read the database and fill the cache.", "warn"],
+      ["Redirect", "Reply 301 or 302: 'go to the long address'.", "ok"]
+    ]
+  },
+  "system-design-chat-message-flow.svg": {
+    "title": "How a chat message travels",
+    "caption": "The message is saved first so it is never lost. Online friends get it through their open connection. Offline friends get a push notification and fetch it when they return.",
+    "steps": [
+      ["Ana types 'Hi!'", "Her phone sends it over an open connection."],
+      ["Chat server receives", "It gives the message number 7 in this conversation."],
+      ["Save it first", "The message is written to the database. Now it is safe."],
+      ["Tell Ana: sent", "One tick appears on Ana's screen."],
+      ["Is Ben online?", "The server looks up which server holds Ben's connection."],
+      ["Online: push it", "The message goes through the open connection right away.", "ok"],
+      ["Offline: queue a push", "A notification job goes to a worker and the phone buzzes.", "warn"],
+      ["Delivered and read", "Ben's phone confirms, and Ana sees two ticks."]
+    ]
+  }
+}

@@ -1,0 +1,517 @@
+{
+  "java/04": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "java/05": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "java/11": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "python-first-api/04": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "python-first-api/05": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "nodejs/04": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "nodejs/14": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "spring-boot/10": {
+    "title": "Normalize a note title",
+    "instructions": "Implement normalize so null or whitespace-only input returns null, and a nonblank string returns its trimmed value. Preserve internal spaces. The caller translates null to a deliberate validation error instead of saving a blank note.",
+    "entryPoint": "normalize",
+    "examples": [
+      {
+        "input": "  APIs  ",
+        "expected": "APIs"
+      },
+      {
+        "input": "   ",
+        "expected": null
+      },
+      {
+        "input": null,
+        "expected": null
+      }
+    ],
+    "testIds": [
+      "trim-title",
+      "blank-title",
+      "missing-title",
+      "preserve-inner-spaces"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static String normalize(String value) {\n    return value;\n  }\n}",
+      "python": "def normalize(value: str | None) -> str | None:\n    return value\n",
+      "typescript": "export function normalize(value: string | null): string | null {\n  return value;\n}\n",
+      "javascript": "export function normalize(value) {\n  return value;\n}\n"
+    }
+  },
+  "java/10": {
+    "title": "Create a distinct sorted title list",
+    "instructions": "Implement titles to return distinct note titles in ascending ASCII order without changing the caller’s list. An empty list returns an empty list. This is an in-memory exercise, not a replacement for a database pagination query.",
+    "entryPoint": "titles",
+    "examples": [
+      {
+        "input": [
+          "Java",
+          "API",
+          "Java"
+        ],
+        "expected": [
+          "API",
+          "Java"
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ],
+    "testIds": [
+      "sorted-distinct",
+      "empty-list",
+      "input-unchanged"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "import java.util.List;\npublic class Solution {\n  public static List<String> titles(List<String> values) {\n    return values;\n  }\n}",
+      "python": "def titles(values: list[str]) -> list[str]:\n    return values\n"
+    }
+  },
+  "java/14": {
+    "title": "Create a distinct sorted title list",
+    "instructions": "Implement titles to return distinct note titles in ascending ASCII order without changing the caller’s list. An empty list returns an empty list. This is an in-memory exercise, not a replacement for a database pagination query.",
+    "entryPoint": "titles",
+    "examples": [
+      {
+        "input": [
+          "Java",
+          "API",
+          "Java"
+        ],
+        "expected": [
+          "API",
+          "Java"
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ],
+    "testIds": [
+      "sorted-distinct",
+      "empty-list",
+      "input-unchanged"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "import java.util.List;\npublic class Solution {\n  public static List<String> titles(List<String> values) {\n    return values;\n  }\n}",
+      "python": "def titles(values: list[str]) -> list[str]:\n    return values\n"
+    }
+  },
+  "python-first-api/06": {
+    "title": "Create a distinct sorted title list",
+    "instructions": "Implement titles to return distinct note titles in ascending ASCII order without changing the caller’s list. An empty list returns an empty list. This is an in-memory exercise, not a replacement for a database pagination query.",
+    "entryPoint": "titles",
+    "examples": [
+      {
+        "input": [
+          "Java",
+          "API",
+          "Java"
+        ],
+        "expected": [
+          "API",
+          "Java"
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ],
+    "testIds": [
+      "sorted-distinct",
+      "empty-list",
+      "input-unchanged"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "import java.util.List;\npublic class Solution {\n  public static List<String> titles(List<String> values) {\n    return values;\n  }\n}",
+      "python": "def titles(values: list[str]) -> list[str]:\n    return values\n"
+    }
+  },
+  "nodejs/05": {
+    "title": "Classify an HTTP method",
+    "instructions": "Implement classify to return read for GET, write for POST/PUT/PATCH/DELETE, and unsupported for any other method. The input contract uses uppercase method strings. Do not perform an actual HTTP request.",
+    "entryPoint": "classify",
+    "examples": [
+      {
+        "input": "GET",
+        "expected": "read"
+      },
+      {
+        "input": "POST",
+        "expected": "write"
+      },
+      {
+        "input": "INVALID",
+        "expected": "unsupported"
+      }
+    ],
+    "testIds": [
+      "read-method",
+      "write-methods",
+      "invalid-method"
+    ],
+    "review": "worked-scenario",
+    "starters": {
+      "typescript": "export function classify(method: string): string {\n  return '';\n}\n",
+      "python": "def classify(method: str) -> str:\n    return ''\n"
+    }
+  },
+  "nodejs/15": {
+    "title": "Classify an HTTP method",
+    "instructions": "Implement classify to return read for GET, write for POST/PUT/PATCH/DELETE, and unsupported for any other method. The input contract uses uppercase method strings. Do not perform an actual HTTP request.",
+    "entryPoint": "classify",
+    "examples": [
+      {
+        "input": "GET",
+        "expected": "read"
+      },
+      {
+        "input": "POST",
+        "expected": "write"
+      },
+      {
+        "input": "INVALID",
+        "expected": "unsupported"
+      }
+    ],
+    "testIds": [
+      "read-method",
+      "write-methods",
+      "invalid-method"
+    ],
+    "review": "worked-scenario",
+    "starters": {
+      "typescript": "export function classify(method: string): string {\n  return '';\n}\n",
+      "python": "def classify(method: str) -> str:\n    return ''\n"
+    }
+  },
+  "python-first-api/16": {
+    "title": "Classify an HTTP method",
+    "instructions": "Implement classify to return read for GET, write for POST/PUT/PATCH/DELETE, and unsupported for any other method. The input contract uses uppercase method strings. Do not perform an actual HTTP request.",
+    "entryPoint": "classify",
+    "examples": [
+      {
+        "input": "GET",
+        "expected": "read"
+      },
+      {
+        "input": "POST",
+        "expected": "write"
+      },
+      {
+        "input": "INVALID",
+        "expected": "unsupported"
+      }
+    ],
+    "testIds": [
+      "read-method",
+      "write-methods",
+      "invalid-method"
+    ],
+    "review": "worked-scenario",
+    "starters": {
+      "typescript": "export function classify(method: string): string {\n  return '';\n}\n",
+      "python": "def classify(method: str) -> str:\n    return ''\n"
+    }
+  },
+  "java/09": {
+    "title": "Validate a note value",
+    "instructions": "Implement valid to return true only when the numeric note ID is positive and the title is nonblank after trimming. This checks a value invariant, not authorization. Do not mutate or persist the input.",
+    "entryPoint": "valid",
+    "examples": [
+      {
+        "input": {
+          "id": 1,
+          "title": "APIs"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "id": 0,
+          "title": "APIs"
+        },
+        "expected": false
+      },
+      {
+        "input": {
+          "id": 1,
+          "title": " "
+        },
+        "expected": false
+      }
+    ],
+    "testIds": [
+      "valid-note",
+      "nonpositive-id",
+      "blank-title"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static boolean valid(long id, String title) {\n    return false;\n  }\n}",
+      "python": "def valid(note_id: int, title: str | None) -> bool:\n    return False\n"
+    }
+  },
+  "python-first-api/09": {
+    "title": "Validate a note value",
+    "instructions": "Implement valid to return true only when the numeric note ID is positive and the title is nonblank after trimming. This checks a value invariant, not authorization. Do not mutate or persist the input.",
+    "entryPoint": "valid",
+    "examples": [
+      {
+        "input": {
+          "id": 1,
+          "title": "APIs"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "id": 0,
+          "title": "APIs"
+        },
+        "expected": false
+      },
+      {
+        "input": {
+          "id": 1,
+          "title": " "
+        },
+        "expected": false
+      }
+    ],
+    "testIds": [
+      "valid-note",
+      "nonpositive-id",
+      "blank-title"
+    ],
+    "review": "walkthrough",
+    "starters": {
+      "java": "public class Solution {\n  public static boolean valid(long id, String title) {\n    return false;\n  }\n}",
+      "python": "def valid(note_id: int, title: str | None) -> bool:\n    return False\n"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+/* The import dialog rises on a bouncy spring and leaves on a quick, smooth one. */
+.upload-dialog-backdrop {
+  animation: spring-fade-in 200ms ease-out backwards;
+}
+
+.upload-dialog {
+  animation: spring-rise-in var(--spring-bouncy-time) var(--spring-bouncy) backwards;
+}
+
+[data-presence='exit'] .upload-dialog-backdrop {
+  animation: spring-fade-out 220ms ease-in forwards;
+}
+
+[data-presence='exit'] .upload-dialog {
+  animation: spring-rise-out 220ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}

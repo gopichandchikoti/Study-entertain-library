@@ -1,0 +1,1186 @@
+{
+  "learning": {
+    "key": "learning",
+    "analogy": "Learning is like climbing stairs. You can only reach the third step if the first two are solid.",
+    "reason": "If you try to memorize a whole framework before you ever run one small example, most of it slips away. Learning in small loops (read, guess, try, check, review) shows you exactly which step you missed.",
+    "terms": {
+      "prerequisite": "something you need to know first, before the next thing makes sense",
+      "checkpoint": "a question you answer from memory, without peeking",
+      "contract": "a clear promise about what goes in and what comes out"
+    },
+    "facts": [
+      "Read the prerequisites before you run a framework example.",
+      "Guess the output first, then look at the answer.",
+      "When a test fails, it points to the idea you are missing.",
+      "A practice score in this app is just a helper, not an official exam grade.",
+      "Come back to a topic after a break; remembering it is better practice than just re-reading it."
+    ],
+    "flow": [
+      "Read",
+      "Predict",
+      "Run",
+      "Compare",
+      "Review"
+    ],
+    "scenario": "You understand how to ask for data with GET, but you cannot explain how the server checks incoming data. What should you study next?",
+    "choices": [
+      "Practice sending bad data and see how the server checks it",
+      "Jump straight to advanced deployment",
+      "Copy an answer without trying it",
+      "Switch frameworks so the problem goes away"
+    ],
+    "expected": "review-validation"
+  },
+  "history": {
+    "key": "history",
+    "analogy": "A new tool is like a bicycle. It gets you there faster than walking, but now you have a bike to look after.",
+    "reason": "Programmers got tired of repeating the same boring setup, so languages and frameworks were invented to do it for them. Each one saves time but brings something new to learn and maintain. Pick the smallest tool that really solves your problem.",
+    "terms": {
+      "runtime": "the helper program that actually runs your code",
+      "framework": "a ready-made skeleton that calls your code at the right moments",
+      "tradeoff": "a good thing you get in exchange for a cost you accept"
+    },
+    "facts": [
+      "A runtime runs your program; a package manager downloads the libraries it needs.",
+      "A framework saves setup work, but it does not decide who is allowed to do what.",
+      "Code that is compiled once to portable bytecode still needs a matching runtime on each computer.",
+      "Non-blocking input and output helps when your program mostly waits; it does not make heavy math faster.",
+      "When you pick a technology, say which need it meets and which cost you accept."
+    ],
+    "flow": [
+      "Problem",
+      "Older approach",
+      "New abstraction",
+      "Benefit",
+      "Cost"
+    ],
+    "scenario": "A small team spends most of its time writing the same route and checking code over and over. What is a good reason to add a framework?",
+    "choices": [
+      "It removes repeated setup while the team still writes its own permission rules",
+      "It guarantees every database query is fast",
+      "It means you no longer need tests",
+      "It automatically decides who is allowed to do what"
+    ],
+    "expected": "reduce-setup"
+  },
+  "types": {
+    "key": "types",
+    "analogy": "A type is the label on a box. Validation is opening the box to check that what is inside really matches the label.",
+    "reason": "Data from outside your program can have any shape, and a wrong shape can cause strange problems far away from where it entered. Types help you reason about your own code, but you still have to check data when it arrives from the outside.",
+    "terms": {
+      "type": "a description of what kind of values are allowed",
+      "reference": "a pointer to an object, not the object itself",
+      "validation": "checking real data against a rule"
+    },
+    "facts": [
+      "A type annotation does not check the JSON that actually arrives.",
+      "Check unknown input before you use it.",
+      "Equal values have the same content; the same object is the very same thing in memory.",
+      "Missing, null, blank, and zero can all mean different things.",
+      "Refuse bad input before you save it."
+    ],
+    "flow": [
+      "Unknown input",
+      "Shape check",
+      "Typed value",
+      "Business rule",
+      "Result"
+    ],
+    "scenario": "Someone sends a note title that is only spaces. What should the API do?",
+    "choices": [
+      "Trim it, see it is empty, and reject it",
+      "Trust the type label and accept it",
+      "Save the spaces as a real title",
+      "Crash and show a scary error"
+    ],
+    "expected": "reject-blank"
+  },
+  "functions": {
+    "key": "functions",
+    "analogy": "A function is a little machine: you drop things in the input tray, it works, and something comes out of the output tray.",
+    "reason": "If you copy the same steps in many places, the copies slowly become different and cause bugs. A function holds one rule in one place so everything uses it the same way and you can test it alone.",
+    "terms": {
+      "parameter": "a named slot where a function receives an input",
+      "return": "the answer a function hands back",
+      "scope": "the part of the program where a name can be seen"
+    },
+    "facts": [
+      "A function's parameters are part of its promise to callers.",
+      "A pure function only works with what you give it and changes nothing outside.",
+      "Do not hide a shared changeable list inside a default value.",
+      "Returning a value lets the caller decide what to do with it.",
+      "A small function can be tested without starting a whole web server."
+    ],
+    "flow": [
+      "Input",
+      "Normalize",
+      "Decide",
+      "Return",
+      "Caller"
+    ],
+    "scenario": "Three routes all clean up a note title in slightly different ways. What fixes this?",
+    "choices": [
+      "Move the cleanup into one tested function that all three use",
+      "Copy all the routes again",
+      "Only check the title in the user interface",
+      "Return success even when there is no title"
+    ],
+    "expected": "extract-rule"
+  },
+  "collections": {
+    "key": "collections",
+    "analogy": "Collections are shelves. A list keeps things in order, a set never allows two of the same, and a map lets you find a thing by its label.",
+    "reason": "Searching a long list one item at a time gets slow as it grows. If you pick the right container for how you will look things up, the code is clearer and faster.",
+    "terms": {
+      "list": "items in order; the same item can appear twice",
+      "set": "a bag of items where each one appears only once",
+      "map": "a lookup table that connects each key to one value"
+    },
+    "facts": [
+      "A list keeps the order and allows repeats.",
+      "A set is how you say 'no duplicates'.",
+      "A map connects each key to exactly one current value.",
+      "Sorting needs a clear rule for what 'smaller' means.",
+      "A database index helps find things in big stored data; a map in memory disappears when the program stops."
+    ],
+    "flow": [
+      "Input records",
+      "Choose keys",
+      "Collect",
+      "Lookup",
+      "Result"
+    ],
+    "scenario": "You often need to find a note by its unique ID in a small program. Which container fits best?",
+    "choices": [
+      "A map where the note ID is the key",
+      "A list you search from the start every time",
+      "A set that stores no notes",
+      "One big changeable text string"
+    ],
+    "expected": "map-by-id"
+  },
+  "objects": {
+    "key": "objects",
+    "analogy": "A class is a blueprint. An object is one real house built from it, with its own paint color and furniture.",
+    "reason": "If anyone can change any field at any time, rules get broken. Putting data and the actions that use it together, and guarding the data, keeps every object valid.",
+    "terms": {
+      "class": "a blueprint that describes the data and actions of something",
+      "object": "one real thing built from a class",
+      "invariant": "a rule that must always be true for the object"
+    },
+    "facts": [
+      "A constructor should create an object that is already valid.",
+      "Private data is changed only through carefully written methods.",
+      "Composition means one object uses another object to help it.",
+      "A child class should keep the promises of its parent class.",
+      "A record is a simple value holder, but things inside it can still be changeable."
+    ],
+    "flow": [
+      "Constructor",
+      "Validate",
+      "Private state",
+      "Public method",
+      "Invariant"
+    ],
+    "scenario": "A note must never have an empty title. Where should the object protect that rule?",
+    "choices": [
+      "When it is created and whenever the title changes",
+      "Only in a color on the screen",
+      "Only in a comment in the database",
+      "Only in a log message"
+    ],
+    "expected": "protect-invariant"
+  },
+  "interfaces": {
+    "key": "interfaces",
+    "analogy": "An interface is the shape of a wall socket. Any plug that fits the shape works, no matter which brand made it.",
+    "reason": "If your business rules talk straight to one specific database, they are hard to test and hard to change. A small contract says what is needed, and different helpers can fill that role.",
+    "terms": {
+      "interface": "a list of actions that something promises to offer",
+      "adapter": "a piece that connects the promise to a real tool",
+      "substitutability": "swapping one piece for another without breaking the promise"
+    },
+    "facts": [
+      "The service should rely on the repository's promise, not on a specific database.",
+      "A fake in-memory version is handy for fast, safe tests.",
+      "A real database version must behave the same way as the fake one.",
+      "A test double stands in for the outside world, not for the rule you are testing.",
+      "An interface cannot fix pieces that behave differently from the promise."
+    ],
+    "flow": [
+      "Service",
+      "Repository port",
+      "Memory adapter",
+      "Database adapter",
+      "Result"
+    ],
+    "scenario": "You want to test your service while the PostgreSQL database is switched off. What helps?",
+    "choices": [
+      "Give the service an in-memory stand-in for its repository",
+      "Catch every error and pretend the catalog is empty",
+      "Put the database password inside the test",
+      "Delete the service rules"
+    ],
+    "expected": "inject-repository"
+  },
+  "null": {
+    "key": "null",
+    "analogy": "An empty seat and a seat with a sign saying 'empty' are not the same thing. One is absence, the other is a value.",
+    "reason": "Missing values are normal when data comes from outside. Showing clearly when something is missing prevents surprise crashes and keeps 'not sent' separate from 'sent but wrong'.",
+    "terms": {
+      "null": "a marker meaning 'there is no value here'",
+      "optional": "a box that may hold a value or may be empty",
+      "normalization": "turning different ways of writing the same thing into one standard form"
+    },
+    "facts": [
+      "Clean up text first, then check whether it is blank.",
+      "Zero is a real number and does not mean 'missing'.",
+      "Look inside an optional box before you take something out.",
+      "A bad title and an unknown note ID are different problems.",
+      "Do not hide real bugs by pretending they are just missing data."
+    ],
+    "flow": [
+      "Missing input",
+      "Normalize",
+      "Check absence",
+      "Validate value",
+      "Result"
+    ],
+    "scenario": "An update request leaves out the title. With PATCH rules, what should happen to the title?",
+    "choices": [
+      "Keep the current title unless the contract says otherwise",
+      "Replace it with an empty string",
+      "Delete the whole note",
+      "Treat the missing title as permission to do anything"
+    ],
+    "expected": "preserve-omitted"
+  },
+  "errors": {
+    "key": "errors",
+    "analogy": "Errors are road signs. They tell the driver what happened without showing the inside of the engine.",
+    "reason": "Raw crashes leak private details and confuse people. Turn known problems into clear, steady messages, and keep the private details in logs that only your team sees.",
+    "terms": {
+      "exception": "a problem that interrupts the normal flow of a program",
+      "safeError": "a short message that is safe to show to the person who asked",
+      "cause": "the deeper problem that explains a surface problem"
+    },
+    "facts": [
+      "An unknown ID should give a clear 'not found' answer.",
+      "A validation problem must never turn into a fake success.",
+      "Whoever opens a resource must close it, even when something fails.",
+      "Error messages for callers must not reveal SQL, file paths, secrets, or stack traces.",
+      "For surprises, send a general message and a request ID that your team can look up."
+    ],
+    "flow": [
+      "Request",
+      "Known rule",
+      "Failure",
+      "Safe translation",
+      "Redacted log"
+    ],
+    "scenario": "A database error includes a private file path. What should the API send back?",
+    "choices": [
+      "A general safe error with a steady code and a request ID",
+      "The raw error text exactly as it came",
+      "An empty success answer",
+      "The private path, to help debugging"
+    ],
+    "expected": "safe-error"
+  },
+  "time": {
+    "key": "time",
+    "analogy": "A calendar date and a moment on the clock are different tools, like a wall calendar and a stopwatch.",
+    "reason": "A time without context is confusing because of time zones and daylight saving changes. Store the kind of time you really mean and make every conversion clear.",
+    "terms": {
+      "instant": "one exact moment on the world's timeline",
+      "localDate": "a calendar day with no time zone attached",
+      "encoding": "the rule for turning text into bytes and back"
+    },
+    "facts": [
+      "A store's schedule day is usually a calendar date.",
+      "A record of when something happened is usually an instant.",
+      "Changing time zones needs a named zone.",
+      "The number of characters you see can differ from the length of the string.",
+      "Always say which encoding a text file uses."
+    ],
+    "flow": [
+      "Input text",
+      "Parse",
+      "Calendar or instant",
+      "Zone policy",
+      "Display"
+    ],
+    "scenario": "A shop schedule is about a whole trading day, not one exact moment. What should you store?",
+    "choices": [
+      "A calendar date plus the store's time zone rule",
+      "A server time with no explanation",
+      "A decimal number of months",
+      "A password string"
+    ],
+    "expected": "calendar-date"
+  },
+  "modules": {
+    "key": "modules",
+    "analogy": "Modules are labeled drawers. Each drawer holds one kind of tool, so you can find things without digging through a pile.",
+    "reason": "Putting everything in one huge file hides how pieces depend on each other. Clear drawers help reuse, but too many tiny drawers make it hard to find anything.",
+    "terms": {
+      "module": "one piece of code with clear things it takes in and gives out",
+      "package": "a bundle of modules with a version number",
+      "lockfile": "a file that records the exact versions you installed"
+    },
+    "facts": [
+      "Share only the parts that are meant to be used from outside.",
+      "A lockfile makes installs repeatable.",
+      "Pieces that depend on each other in a circle are hard to understand.",
+      "Different module systems find files in different ways.",
+      "Keep secrets out of files you commit."
+    ],
+    "flow": [
+      "Source",
+      "Import boundary",
+      "Package",
+      "Lockfile",
+      "Runtime"
+    ],
+    "scenario": "Two computers install different versions of the same libraries. What makes builds the same?",
+    "choices": [
+      "A lockfile saved with the project and used by the package manager",
+      "A screenshot of the editor",
+      "A hidden browser setting",
+      "A tag called 'latest' on its own"
+    ],
+    "expected": "use-lockfile"
+  },
+  "config": {
+    "key": "config",
+    "analogy": "Configuration is the address label on a parcel. You change where it goes without changing what is inside.",
+    "reason": "If addresses and passwords are typed into the code, you must edit the code for every place it runs. Settings kept outside the code, and checked at startup, let the same program run anywhere.",
+    "terms": {
+      "environment": "the settings given to a program by the place it runs",
+      "profile": "a named set of settings, such as dev or production",
+      "secret": "a password or key that must never be made public"
+    },
+    "facts": [
+      "Check that required settings exist when the program starts.",
+      "Keep secrets on the server, never in browser code.",
+      "A profile can switch which helper is used without changing the service's promise.",
+      "Write down which setting wins when two places disagree.",
+      "A missing database password is a problem to report, not an empty catalog."
+    ],
+    "flow": [
+      "Environment",
+      "Parse",
+      "Validate",
+      "Choose adapter",
+      "Start or fail"
+    ],
+    "scenario": "In production, the storage password is missing. What should the app do when it starts?",
+    "choices": [
+      "Say it is not ready and show a safe configuration error",
+      "Start with a fake full library",
+      "Put a private key into browser JavaScript",
+      "Quietly pretend the storage is empty"
+    ],
+    "expected": "fail-config"
+  },
+  "http": {
+    "key": "http",
+    "analogy": "An HTTP request is a letter. It has an address, a word saying what you want done, and sometimes a form inside.",
+    "reason": "If every app invented its own message style, nothing could talk to anything else. Shared methods, headers, and status codes let different programs understand each other.",
+    "terms": {
+      "method": "the action word of a request, like GET or POST",
+      "header": "extra information that travels with a message",
+      "status": "a number in the reply that says how it went"
+    },
+    "facts": [
+      "GET reads data and should not create anything new.",
+      "Creating something with POST usually answers 201 and points to the new item.",
+      "Content-Type tells what kind of data is in the body.",
+      "Before retrying a write, decide how to avoid doing it twice.",
+      "A list answer should be a limited page in a steady order."
+    ],
+    "flow": [
+      "Client",
+      "URL and method",
+      "Headers and body",
+      "Route",
+      "Response"
+    ],
+    "scenario": "A client wants a page of notes and must not change anything. Which request fits?",
+    "choices": [
+      "GET /notes?limit=20 returning a limited list",
+      "POST /delete-everything",
+      "A GET that secretly changes data",
+      "A database password inside the URL"
+    ],
+    "expected": "bounded-get"
+  },
+  "routing": {
+    "key": "routing",
+    "analogy": "A route is a labeled service window. Middleware is the line of checks you pass before you reach the window.",
+    "reason": "Without a routing table, every handler would have to read every URL. Steps that run before the handler, like size limits and login checks, keep rules in one place, but each handler must still check who may touch which record.",
+    "terms": {
+      "route": "a rule that sends a method and a path to a piece of code",
+      "binding": "turning parts of a request into inputs for your code",
+      "middleware": "a step that runs around every request"
+    },
+    "facts": [
+      "Set the body size limit before code that reads the body.",
+      "Knowing who someone is does not replace checking what they may touch.",
+      "Path parameters and query parameters play different roles.",
+      "A route handles the web side and passes business rules to a service.",
+      "An unknown route should give a predictable 'not found' answer."
+    ],
+    "flow": [
+      "Body limit",
+      "Request ID",
+      "Identity",
+      "Route",
+      "Error handler"
+    ],
+    "scenario": "A request body is bigger than the allowed upload size. What happens first?",
+    "choices": [
+      "Stop it at the size limit before reading it all",
+      "Load every byte into memory, then decide",
+      "Send it to every database table",
+      "Trust a hidden button in the page"
+    ],
+    "expected": "reject-size"
+  },
+  "validation": {
+    "key": "validation",
+    "analogy": "Validation is the librarian checking your form before going to look at the shelves.",
+    "reason": "Type labels are not permission checks. Keep the shape check, the clean-up, the business rules, and the ownership check separate so you always know which one failed.",
+    "terms": {
+      "schema": "a written description of the shape and limits of data",
+      "businessRule": "a rule about what is allowed in your app",
+      "authorization": "deciding what a person is allowed to do"
+    },
+    "facts": [
+      "A schema can reject a title that is too long.",
+      "Trimming can turn spaces into an empty title that must be rejected.",
+      "The service checks that the category is one it allows.",
+      "A real note ID does not prove the caller owns that note.",
+      "Check the data you send back as well as the data you receive."
+    ],
+    "flow": [
+      "Unknown JSON",
+      "Schema",
+      "Normalize",
+      "Business rule",
+      "Ownership"
+    ],
+    "scenario": "A note ID is real but belongs to someone else. Which check blocks the read?",
+    "choices": [
+      "Checking that the caller owns that record",
+      "Only checking the JSON is well-formed",
+      "Only checking the secure connection worked",
+      "The color of the submit button"
+    ],
+    "expected": "check-ownership"
+  },
+  "database": {
+    "key": "database",
+    "analogy": "A transaction is a sealed envelope handed in at school. Either all the papers are accepted, or none of them are.",
+    "reason": "Plain files and lists do not protect your data when many things happen at once. A database gives you queries and rules, but you still decide where the sealed envelope starts and ends.",
+    "terms": {
+      "transaction": "a group of changes that all succeed or all get undone",
+      "index": "a quick-lookup list a database keeps beside your data",
+      "parameter": "a value sent separately from the SQL text"
+    },
+    "facts": [
+      "Use parameters instead of gluing user text into SQL.",
+      "A database rule keeps data safe even when many writes happen at once.",
+      "An index speeds some reads but costs space and slows writes a little.",
+      "Give a borrowed connection back when the request ends.",
+      "Keep big files outside the database rows and store only a pointer."
+    ],
+    "flow": [
+      "Validate",
+      "Borrow connection",
+      "Transaction",
+      "Commit or rollback",
+      "Release"
+    ],
+    "scenario": "A note and its bookmark must be created together. How should storage behave?",
+    "choices": [
+      "One transaction that undoes both if either fails",
+      "Two separate writes with no recovery plan",
+      "Send the database password to the browser",
+      "A giant global list that only pretends to save"
+    ],
+    "expected": "atomic-write"
+  },
+  "transactions": {
+    "key": "transactions",
+    "analogy": "A numbered receipt makes sure the same payment is not charged twice, even if you show it twice.",
+    "reason": "A reply can get lost even though the work succeeded. Unique request keys and database rules stop repeats from doing the job twice, and an outbox saves a 'to do later' note in the same step as the work.",
+    "terms": {
+      "idempotency": "doing the same action again has no extra effect",
+      "outbox": "a to-do note saved in the same step as the main change",
+      "isolation": "how separate changes at the same time are kept from tangling"
+    },
+    "facts": [
+      "A timeout does not prove the write failed.",
+      "An idempotency key needs a place that stores each key only once.",
+      "The outbox note is saved in the same commit as the real data.",
+      "Retry only actions where doing them twice is safe.",
+      "A version check can spot two people changing the same thing."
+    ],
+    "flow": [
+      "Request key",
+      "Unique check",
+      "Business row",
+      "Outbox row",
+      "Commit"
+    ],
+    "scenario": "A create request times out, and the client tries again. How do you avoid a duplicate?",
+    "choices": [
+      "Use the same unique request key and store it only once",
+      "Make a new key for every retry",
+      "Assume a timeout always means nothing happened",
+      "Turn off all error messages"
+    ],
+    "expected": "deduplicate-write"
+  },
+  "security": {
+    "key": "security",
+    "analogy": "A badge shows who you are. A room key decides which rooms you can enter. They are not the same thing.",
+    "reason": "Trusting a button in the browser, or a suggestion from an AI model, hands your power to the wrong place. Check who the caller is, and check what they may do, on the server you control.",
+    "terms": {
+      "authentication": "proving who someone is",
+      "authorization": "checking what that person may do with specific data",
+      "leastPrivilege": "giving only the access a job really needs"
+    },
+    "facts": [
+      "Who you are and what you may do are two different questions.",
+      "Hiding a button does not protect anything.",
+      "Keep passwords and keys in protected server settings.",
+      "If users can give a link, control where the server is allowed to go.",
+      "Logs must hide passwords and private content."
+    ],
+    "flow": [
+      "TLS",
+      "Identity",
+      "Scope",
+      "Resource ownership",
+      "Allow or deny"
+    ],
+    "scenario": "A signed-in student asks for another student's private note. What should happen?",
+    "choices": [
+      "Say no, because the ownership check fails",
+      "Allow it because any login is enough",
+      "Believe the role the student claims",
+      "Send a secret so they can sign in"
+    ],
+    "expected": "deny-cross-user"
+  },
+  "testing": {
+    "key": "testing",
+    "analogy": "A test is a rehearsal where you break a prop on purpose to see if the show still goes on.",
+    "reason": "Trying only the happy path by hand misses breakages. Tests check each part at different sizes. A coverage number shows what ran, not whether the checks are any good.",
+    "terms": {
+      "fixture": "prepared test data or setup",
+      "unitTest": "a small test of one rule",
+      "integrationTest": "a test that checks several real parts together"
+    },
+    "facts": [
+      "Test with made-up data in a separate test database.",
+      "Check both the status code and the shape of the answer.",
+      "Test bad input and broken helpers too.",
+      "A mock isolates a helper but cannot prove the real SQL works.",
+      "A coverage percentage shows what code ran, not that it is correct."
+    ],
+    "flow": [
+      "Arrange",
+      "Act",
+      "Assert",
+      "Failure case",
+      "Cleanup"
+    ],
+    "scenario": "A controller test uses the real production database. What should replace it?",
+    "choices": [
+      "A separate test database with made-up data that is cleaned afterwards",
+      "The same database with a different log color",
+      "A public copy of everyone's data",
+      "A test with no checks"
+    ],
+    "expected": "isolated-fixtures"
+  },
+  "observability": {
+    "key": "observability",
+    "analogy": "Logs are a diary, metrics are a scoreboard, and traces are the trip itinerary of one request.",
+    "reason": "One green light saying 'running' can hide the fact that something it depends on is broken. Signals that can be linked together help you find the problem quickly without showing private data.",
+    "terms": {
+      "log": "a written note about something that happened",
+      "metric": "a number that counts or measures something over time",
+      "trace": "the path one request took through many parts"
+    },
+    "facts": [
+      "A request ID lets you follow one request through safe logs.",
+      "Liveness asks: is the program alive?",
+      "Readiness asks: can it really handle visitors right now?",
+      "Look at slow cases (percentiles), not only the average speed.",
+      "A good alert tells who should act and what to do."
+    ],
+    "flow": [
+      "Request ID",
+      "Logs",
+      "Metrics",
+      "Trace",
+      "Operator"
+    ],
+    "scenario": "The program is running but its database is unreachable. What should the health checks say?",
+    "choices": [
+      "Liveness can pass while readiness fails",
+      "Everything must always say green",
+      "Return a fake empty success",
+      "Show the database password in the health reply"
+    ],
+    "expected": "readiness-fails"
+  },
+  "deployment": {
+    "key": "deployment",
+    "analogy": "Deploying is carrying a tested lunch box to another classroom without spilling it.",
+    "reason": "Building by hand on every machine makes each release a little different. A versioned package, settings kept outside it, quick checks, and a way back make releases repeatable.",
+    "terms": {
+      "artifact": "the finished, versioned package made by a build",
+      "rollback": "going back to the last version that worked",
+      "restore": "bringing data back from a backup"
+    },
+    "facts": [
+      "Ship the exact package you tested.",
+      "Keep secrets in the deployment settings, not in the code.",
+      "Run quick smoke checks right after a release.",
+      "A backup only counts if you have practiced restoring it.",
+      "Change databases in steps that old and new code can both handle."
+    ],
+    "flow": [
+      "Lockfile",
+      "Checks",
+      "Artifact",
+      "Deploy",
+      "Smoke and rollback"
+    ],
+    "scenario": "A new release fails its readiness check. What should you do?",
+    "choices": [
+      "Stop the rollout and go back to the version that worked",
+      "Delete the backups",
+      "Hide the health page",
+      "Update every library to 'latest'"
+    ],
+    "expected": "rollback-release"
+  },
+  "async": {
+    "key": "async",
+    "analogy": "A job queue is a ticket counter. You get a ticket right away while the long job keeps working in the back.",
+    "reason": "Long work can block quick requests behind it. Async lets one worker do other things while it waits; heavy computing needs separate workers with limits, not just a keyword.",
+    "terms": {
+      "eventLoop": "the manager that decides what runs next while others wait",
+      "queue": "a waiting line for jobs, with a size limit",
+      "cancellation": "asking work to stop and clean up after itself"
+    },
+    "facts": [
+      "Async does not make heavy computing free.",
+      "For work done later, answer 202 with a task ID.",
+      "Workers need a retry limit and a place for jobs that keep failing.",
+      "Cancelling must release whatever the job was holding.",
+      "Limit the queue so memory does not grow forever."
+    ],
+    "flow": [
+      "Request",
+      "Queue limit",
+      "Worker",
+      "Progress",
+      "Result"
+    ],
+    "scenario": "A PDF export takes minutes and blocks quick requests. What is a good design?",
+    "choices": [
+      "Put it in a limited queue and give a status ID to check",
+      "Add the async keyword to a heavy loop",
+      "Keep unlimited requests waiting forever",
+      "Install random packages on every request"
+    ],
+    "expected": "queue-job"
+  },
+  "files": {
+    "key": "files",
+    "analogy": "A safe root is a playground fence. Every path has to stay inside it.",
+    "reason": "A path from a visitor can sneak out with '..' or through a shortcut link. Check paths against a fixed root, allow only certain files, limit sizes, and stream large files.",
+    "terms": {
+      "path": "the address that points to a file",
+      "buffer": "a chunk of raw data held in memory",
+      "backpressure": "telling the sender to slow down when the receiver is full"
+    },
+    "facts": [
+      "Clean up the path and keep it inside the allowed folder.",
+      "A shortcut link (symlink) can fool a simple text check.",
+      "Say which encoding to use when turning bytes into text.",
+      "Stream big files and slow the sender when needed.",
+      "Close files and delete temporary files, even when something fails."
+    ],
+    "flow": [
+      "Relative key",
+      "Canonical root",
+      "Allowlist",
+      "Bounded stream",
+      "Cleanup"
+    ],
+    "scenario": "A caller asks the file API for ../private.key. What happens?",
+    "choices": [
+      "Reject it before opening any file",
+      "Open it because it is valid text",
+      "Search the whole disk for the key",
+      "Return the full folder path in the error"
+    ],
+    "expected": "reject-traversal"
+  },
+  "concurrency": {
+    "key": "concurrency",
+    "analogy": "Two kids updating one scoreboard at the same time need a rule for taking turns.",
+    "reason": "Two workers can both read the same old number and both write back, losing one change. Locks, atomic operations, queues, or database rules decide who changes what.",
+    "terms": {
+      "race": "a result that depends on lucky timing",
+      "executor": "a manager that runs a limited number of tasks",
+      "interruption": "a polite request for a running task to stop"
+    },
+    "facts": [
+      "Read-then-change-then-write can go wrong when two run together.",
+      "A lock must cover the whole rule, not just part of it.",
+      "Shared changeable data needs one clear owner.",
+      "A limited pool of workers stops tasks piling up forever.",
+      "Stopping a task is cooperative and needs cleanup."
+    ],
+    "flow": [
+      "Shared state",
+      "Ownership",
+      "Atomic change",
+      "Result",
+      "Release"
+    ],
+    "scenario": "Two workers each read a counter, add one, and write it back. What fixes the lost updates?",
+    "choices": [
+      "An atomic operation or a lock around the whole update",
+      "Adding a sleep with no locking rule",
+      "A longer variable name",
+      "Two separate copies that pretend to agree"
+    ],
+    "expected": "atomic-update"
+  },
+  "memory": {
+    "key": "memory",
+    "analogy": "Memory is your desk. Tidying the desk does not close the library room you borrowed.",
+    "reason": "The garbage collector tidies unused objects, but open files and database connections need someone to close them. Measure first, then speed things up.",
+    "terms": {
+      "heap": "the big area of memory where objects live",
+      "stack": "the small tidy area that tracks the calls happening right now",
+      "leak": "holding on to something long after it is useful"
+    },
+    "facts": [
+      "Garbage collection does not return database connections for you.",
+      "A reference that is still alive keeps its data in memory.",
+      "A cache with no size limit can fill all the memory.",
+      "Profiling shows where the real slowness is.",
+      "Whoever creates a resource is responsible for cleaning it up."
+    ],
+    "flow": [
+      "Allocate",
+      "Use",
+      "Reference",
+      "Release resource",
+      "Reclaim memory"
+    ],
+    "scenario": "A server never gives pooled connections back after failed queries. What happens?",
+    "choices": [
+      "The pool can run dry even while garbage collection runs",
+      "Garbage collection returns them immediately",
+      "Every query gets faster",
+      "Changing CSS on the client fixes it"
+    ],
+    "expected": "release-pool"
+  },
+  "network": {
+    "key": "network",
+    "analogy": "A network request is a relay race: names, connections, secret code, and messages each pass the baton.",
+    "reason": "DNS, TCP, TLS, and HTTP each solve a different problem. One total time limit stops each step from waiting forever on its own.",
+    "terms": {
+      "DNS": "the phone book that turns a name into an address",
+      "TLS": "the lock that scrambles messages and proves who the server is",
+      "deadline": "the total time allowed for the whole job"
+    },
+    "facts": [
+      "DNS finds an address; it does not decide who may see a record.",
+      "TLS protects the road, but the app still checks permissions.",
+      "A timeout needs a clear message for the user.",
+      "Retry with growing waits and a bit of randomness, only when it is safe.",
+      "One request that fans out into many multiplies the load behind it."
+    ],
+    "flow": [
+      "DNS",
+      "TCP",
+      "TLS",
+      "HTTP",
+      "Dependency"
+    ],
+    "scenario": "A helper service does not answer within the time budget. What should you do?",
+    "choices": [
+      "Time out safely and keep the number of retries limited",
+      "Wait forever",
+      "Retry right away without any limit",
+      "Invent an answer"
+    ],
+    "expected": "bounded-timeout"
+  },
+  "requirements": {
+    "key": "requirements",
+    "analogy": "System design starts like planning a school bus route: who rides, how often, and how late is okay?",
+    "reason": "Picking a database before asking how much work there will be is guessing. Writing down what the system must do, how well, and how much, makes choices easy to check.",
+    "terms": {
+      "functionalRequirement": "something the system must do",
+      "qualityRequirement": "how fast, safe, or reliable it must be while doing it",
+      "RPS": "requests per second"
+    },
+    "facts": [
+      "Say whether each number is a guess or a measurement.",
+      "Average load is not the same as the busiest moment.",
+      "Estimate storage as number of items times size times how long you keep them.",
+      "Speed, uptime, and cost are different goals.",
+      "Start with the simplest design that fits the stated workload."
+    ],
+    "flow": [
+      "User job",
+      "Requirements",
+      "Numbers",
+      "Bottleneck",
+      "Choice"
+    ],
+    "scenario": "Imagine 1200 active users each read once per minute. What is the average read load?",
+    "choices": [
+      "About 20 requests per second before adding a busy-time factor",
+      "1200 requests per millisecond",
+      "Zero because reading is free",
+      "A peak of 20 that nobody measured"
+    ],
+    "expected": "twenty-rps"
+  },
+  "cache": {
+    "key": "cache",
+    "analogy": "A cache is a sticky note on your desk: quick to read, but it can be out of date.",
+    "reason": "Asking the slow place again and again wastes time. Keep a quick copy nearby, decide how long it stays fresh, and protect the slow place when the copy is missing.",
+    "terms": {
+      "TTL": "how long a saved copy is allowed to be used",
+      "cacheAside": "check the cache, fetch from the source on a miss, then save a copy",
+      "stampede": "many requests all rebuilding the same missing value at once"
+    },
+    "facts": [
+      "A cache is a copy, not the true source.",
+      "A cache key must include whatever decides who may see the data.",
+      "A TTL limits how old data can get; it does not promise the newest data.",
+      "On a miss, read the source in a controlled way.",
+      "When data changes, remove or update the old copy."
+    ],
+    "flow": [
+      "Read key",
+      "Hit or miss",
+      "Source read",
+      "Cache fill",
+      "Invalidate"
+    ],
+    "scenario": "A cached note changes in the database. How do you keep readers from seeing old data too long?",
+    "choices": [
+      "Remove that cached key or use a clear TTL rule",
+      "Keep it forever with no freshness rule",
+      "Share every user's private cache key",
+      "Delete the real record"
+    ],
+    "expected": "invalidate-cache"
+  },
+  "scaling": {
+    "key": "scaling",
+    "analogy": "Replication is photocopying a book so more people can read it. Partitioning is splitting a huge bookshelf into separate shelves.",
+    "reason": "One machine eventually runs out of room or power. Find what is really running out before adding copies or splitting data, because both add work to manage.",
+    "terms": {
+      "replica": "an extra copy of data or of a running service",
+      "shard": "one slice of a dataset that is split across machines",
+      "hotKey": "one popular key that gets far more traffic than the rest"
+    },
+    "facts": [
+      "Vertical scaling means a bigger machine.",
+      "Horizontal scaling means more machines.",
+      "A read copy can be a little behind the latest write.",
+      "Sharding needs a key for routing and a plan for moving data.",
+      "Autoscaling cannot fix a single over-popular key."
+    ],
+    "flow": [
+      "Measure",
+      "Identify bottleneck",
+      "Replica or shard",
+      "Route",
+      "Observe"
+    ],
+    "scenario": "A user reads from a copy that is behind right after saving. What should the design say?",
+    "choices": [
+      "Explain how read-your-own-writes works, or say it is eventually consistent",
+      "That every copy is always current",
+      "That copies mean you never need backups",
+      "That the browser can commit copy state"
+    ],
+    "expected": "explain-replica-lag"
+  },
+  "reliability": {
+    "key": "reliability",
+    "analogy": "Reliability is carrying a spare tire and knowing when to stop driving.",
+    "reason": "Retrying again and again can make an outage worse. Time limits, separate pools, growing waits, and safe repeats stop a failure from spreading and let you tell users the truth.",
+    "terms": {
+      "backoff": "waiting longer and longer between retries",
+      "circuitBreaker": "a switch that stops calling something that keeps failing",
+      "bulkhead": "separate compartments so one failure cannot sink the whole ship"
+    },
+    "facts": [
+      "Retries need a limit and must be safe to repeat.",
+      "Adding a little randomness stops everyone from retrying at the same moment.",
+      "A circuit breaker should test now and then to see if the helper recovered.",
+      "A fallback must not look like lost data.",
+      "Each helper needs an owner and a recovery plan."
+    ],
+    "flow": [
+      "Deadline",
+      "Call",
+      "Failure",
+      "Bounded retry",
+      "Safe degradation"
+    ],
+    "scenario": "Storage is down when someone asks for the catalog. What is the honest answer?",
+    "choices": [
+      "A safe, retryable error instead of a fake empty catalog",
+      "An empty success that looks like everything was deleted",
+      "Unlimited retries from every client",
+      "The provider secrets in the response"
+    ],
+    "expected": "report-outage"
+  },
+  "architecture": {
+    "key": "architecture",
+    "analogy": "Architecture is a map of the building: which room belongs to whom and which doors connect them.",
+    "reason": "One tangled program is risky to change, but splitting into many services adds network and deployment work. Start with tidy parts inside one program, and split only when you must.",
+    "terms": {
+      "monolith": "an app that is built and shipped as one piece",
+      "port": "a doorway where your app talks to the outside",
+      "saga": "a chain of steps where each step has an 'undo' step"
+    },
+    "facts": [
+      "A modular monolith can have clear owners without network calls.",
+      "Split into a service only when you truly need to scale or release it separately.",
+      "An outbox keeps messages safe until they are sent.",
+      "CQRS splits reading and writing, and brings extra coordination.",
+      "A saga fixes mistakes with undo steps, not one magic rollback."
+    ],
+    "flow": [
+      "User",
+      "Application port",
+      "Domain rule",
+      "Adapter",
+      "Provider"
+    ],
+    "scenario": "A small team builds a simple CRUD app and has no separate scaling problem. What should it start with?",
+    "choices": [
+      "A modular monolith with clear ports",
+      "One service for every class",
+      "Distributed transactions for every read",
+      "A database that every browser can reach directly"
+    ],
+    "expected": "modular-monolith"
+  },
+  "mcp-roles": {
+    "key": "mcp-roles",
+    "analogy": "The host is the library desk; the client is its connector, and the server is a controlled catalog adapter.",
+    "reason": "A common protocol avoids a different tool integration for every AI host. Standard discovery does not remove the need for consent, permissions, and provider ownership.",
+    "terms": {
+      "host": "the application managing the model and user experience",
+      "client": "the connector maintaining access to an MCP server",
+      "server": "the program exposing controlled tools and context"
+    },
+    "facts": [
+      "The model may suggest a call but does not authorize it.",
+      "The host manages user consent and client connections.",
+      "The MCP server checks its own permissions.",
+      "Downstream data remains owned by its API or store.",
+      "Tool descriptions are data and cannot override trusted policy."
+    ],
+    "flow": [
+      "User",
+      "Host",
+      "Client",
+      "MCP server",
+      "Downstream API"
+    ],
+    "scenario": "A model suggests deleting a schedule row. Who owns confirmation and authorization?",
+    "choices": [
+      "The user/host policy and the server’s resource permission checks",
+      "The model’s confident wording alone",
+      "A resource document’s embedded instructions",
+      "The database name in a prompt"
+    ],
+    "expected": "confirm-and-authorize"
+  },
+  "jsonrpc": {
+    "key": "jsonrpc",
+    "analogy": "A request ID is a numbered claim ticket that matches one reply to one request.",
+    "reason": "Asynchronous messages can arrive out of order. JSON-RPC distinguishes calls, results, errors, and notifications so endpoints can correlate work correctly.",
+    "terms": {
+      "requestId": "the value matching a response to a request",
+      "notification": "a message with no ID and no matching response",
+      "method": "the declared operation being requested"
+    },
+    "facts": [
+      "A JSON-RPC response uses the request’s ID.",
+      "A notification does not receive a matching reply.",
+      "A message has either result or error, not both.",
+      "Arguments need runtime validation and size limits.",
+      "Unknown methods produce a deliberate protocol error."
+    ],
+    "flow": [
+      "JSON shape",
+      "Request ID",
+      "Method lookup",
+      "Validate params",
+      "Result or error"
+    ],
+    "scenario": "A request has ID 7. Which success response is valid?",
+    "choices": [
+      "jsonrpc 2.0, id 7, and result",
+      "id 8 with the right body",
+      "both result and error",
+      "a notification pretending to be a reply"
+    ],
+    "expected": "match-id"
+  },
+  "mcp-lifecycle": {
+    "key": "mcp-lifecycle",
+    "analogy": "Capabilities are a menu: do not order a dish that this server does not serve.",
+    "reason": "Protocol revisions differ. Older initialization-based connections and newer self-contained requests cannot be assumed interchangeable without an explicit compatibility plan.",
+    "terms": {
+      "capability": "a supported protocol feature",
+      "negotiation": "agreeing on compatible behavior",
+      "metadata": "context accompanying a request"
+    },
+    "facts": [
+      "Pin the protocol revision used by a client and server.",
+      "Check a capability before invoking an optional feature.",
+      "Legacy initialization and modern request metadata are different models.",
+      "Stateless protocol requests can still access persistent application state.",
+      "Reject unsupported versions rather than guessing."
+    ],
+    "flow": [
+      "Revision",
+      "Metadata or initialize",
+      "Capabilities",
+      "Operation",
+      "Shutdown"
+    ],
+    "scenario": "A client does not advertise an optional feature. Choose the server behavior.",
+    "choices": [
+      "Do not invoke it; use a supported path or safe error",
+      "Invoke it and hope",
+      "Treat absence as blanket permission",
+      "Write a custom incompatible result without negotiation"
+    ],
+    "expected": "respect-capability"
+  },
+  "mcp-transport": {
+    "key": "mcp-transport",
+    "analogy": "A transport is the road; JSON-RPC is the language spoken by travelers on it.",
+    "reason": "Local pipes and remote HTTP have different security and lifecycle needs. The same capability contracts can work over either when framing, authentication, and limits are explicit.",
+    "terms": {
+      "stdio": "a process input/output message channel",
+      "StreamableHTTP": "an HTTP transport for MCP request/response and optional streaming",
+      "framing": "rules separating complete messages"
+    },
+    "facts": [
+      "Stdio protocol messages go to stdout while logs go to stderr.",
+      "Remote HTTP requires intentional authentication and TLS.",
+      "Connection loss needs bounded reconnect behavior.",
+      "An HTTP token does not grant unlimited downstream access.",
+      "Frame sizes and timeouts must be bounded."
+    ],
+    "flow": [
+      "Host",
+      "Pipe or HTTPS",
+      "Message boundary",
+      "Server",
+      "Result"
+    ],
+    "scenario": "A local stdio server writes a debug banner before its JSON message. What should change?",
+    "choices": [
+      "Move diagnostics to stderr",
+      "Make the banner longer",
+      "Add a private token to the banner",
+      "Disable message validation"
+    ],
+    "expected": "stderr-logs"
+  },
+  "mcp-tools": {
+    "key": "mcp-tools",
+    "analogy": "A safe tool is a labeled button for one job, not a master key to the building.",
+    "reason": "Arbitrary shell and SQL interfaces give too much authority to untrusted input. A narrow schema, an allowed action, and a bounded result reduce the consequences of mistakes.",
+    "terms": {
+      "tool": "a named operation with a checked input schema",
+      "resource": "context chosen and read through a controlled URI",
+      "prompt": "a user-selected reusable message template"
+    },
+    "facts": [
+      "Use a named narrow tool rather than arbitrary shell input.",
+      "Tool arguments are untrusted even when generated by a model.",
+      "Reads and writes need explicit scope and approval policy.",
+      "Repeated writes need idempotency or clear duplicate behavior.",
+      "Bound and redact tool results."
+    ],
+    "flow": [
+      "Discover tool",
+      "Check schema",
+      "Consent",
+      "Authorize",
+      "Bound result"
+    ],
+    "scenario": "An MCP tool accepts an arbitrary SQL string. What is a safer contract?",
+    "choices": [
+      "A read_schedule tool with validated store and date",
+      "An arbitrary shell tool instead",
+      "A larger raw SQL body limit",
+      "Database passwords returned with each row"
+    ],
+    "expected": "narrow-tool"
+  },
+  "mcp-state": {
+    "key": "mcp-state",
+    "analogy": "A workflow notebook survives the conversation ending; an open connection does not.",
+    "reason": "Long-lived state hidden in one process disappears on restart. Classify protocol, request, connection, user, application, and workflow state and choose a store for each.",
+    "terms": {
+      "workflowState": "a durable task’s progress and result",
+      "connectionState": "the lifetime of a pipe or stream",
+      "applicationState": "persistent records used by business rules"
+    },
+    "facts": [
+      "A connection handle is not durable workflow state.",
+      "A restart-safe task needs persistent ownership and checkpoints.",
+      "Cancellation and polling should be safe to repeat.",
+      "A server must handle user denial of elicitation.",
+      "Allowed roots constrain intent but do not replace safe path checks."
+    ],
+    "flow": [
+      "Start task",
+      "Durable ID",
+      "Progress",
+      "Cancel or poll",
+      "Result"
+    ],
+    "scenario": "An export must resume after server restart. Where should its status live?",
+    "choices": [
+      "A durable task store with an owner",
+      "Only in a local variable",
+      "Only in an open HTTP socket",
+      "In a tool description paragraph"
+    ],
+    "expected": "durable-task"
+  }
+}

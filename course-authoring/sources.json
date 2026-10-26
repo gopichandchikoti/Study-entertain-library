@@ -1,0 +1,34 @@
+{
+  "FastAPI": [
+    "Python 3.11+; examples use Python 3.11 syntax and Pydantic 2 conventions",
+    "https://docs.python.org/3/tutorial/",
+    "https://fastapi.tiangolo.com/tutorial/"
+  ],
+  "Java": [
+    "Java 17 baseline; installed validation JDK may be newer",
+    "https://docs.oracle.com/en/java/javase/17/"
+  ],
+  "Node.js": [
+    "Node 22 baseline; ESM modules",
+    "https://nodejs.org/api/"
+  ],
+  "Spring Boot": [
+    "Java 17; runnable project pins Spring Boot 3.1.3 for the supplied course baseline",
+    "https://docs.spring.io/spring-boot/index.html"
+  ],
+  "API designs": [
+    "HTTP semantics; educational contracts, not an audit of the unavailable TM Schedule repository",
+    "https://www.rfc-editor.org/rfc/rfc9110",
+    "https://spec.openapis.org/oas/v3.1.0.html"
+  ],
+  "System Design": [
+    "Workload figures are assumptions until measured",
+    "https://www.postgresql.org/docs/current/",
+    "https://opentelemetry.io/docs/"
+  ],
+  "MCP servers": [
+    "MCP revision 2026-07-28; initialization-based revision 2025-11-25 is discussed separately",
+    "https://modelcontextprotocol.io/specification/2026-07-28",
+    "https://www.jsonrpc.org/specification"
+  ]
+}

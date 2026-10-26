@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: study-library-api
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build
+    startCommand: pnpm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: '10000'
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_STORAGE_BUCKET
+        value: study-library
+      # An https origin with no path. The service refuses to start in production without it.
+      - key: WEB_ORIGIN
+        sync: false
+      # At least 12 characters. The service refuses to start in production without it: the library is never left open.
+      - key: LIBRARY_ACCESS_PASSWORD
+        sync: false
+      # At least 32 bytes and different from the password (openssl rand -base64 48).
+      - key: SESSION_SECRET
+        sync: false
+      # At least 32 bytes. Leave unset to switch POST /api/catalog/sync off.
+      - key: CATALOG_SYNC_TOKEN
+        sync: false
+      # Render puts exactly one proxy in front of the service, so the client address is one hop back.
+      - key: TRUST_PROXY_HOPS
+        value: '1'
+      # Set to lax when the web page and this API share one registrable domain (api.example.com and library.example.com).
+      - key: API_COOKIE_SAMESITE
+        value: none

@@ -1,0 +1,12 @@
+{
+  "name": "study-notes-node-course",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test *.test.mjs"
+  }
+}

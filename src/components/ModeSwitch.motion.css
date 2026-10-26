@@ -1,0 +1,11 @@
+/* The active mode is a highlight that slides between tabs on a spring (hooks/useSlidingIndicator). */
+.shell-mode-switch[data-indicator]::after {
+  border-radius: 6px;
+  background: var(--paper-raised);
+  box-shadow: 0 3px 10px rgba(29, 37, 35, 0.08);
+}
+
+.shell-mode-switch[data-indicator] button.is-active {
+  background: transparent;
+  box-shadow: none;
+}
